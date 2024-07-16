@@ -1,11 +1,10 @@
 import React from 'react';
 import './App.scss';
+import MainNavigation from './routes/main-navigation/MainNavigation';
 
 function App() {
   return (
-    <div className="App">
-      
-    </div>
+    <MainNavigation />
   );
 }
 
