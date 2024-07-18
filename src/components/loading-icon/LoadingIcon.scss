@@ -1,0 +1,42 @@
+@import '../../styles/_colors.scss';
+@import '../../styles/_fonts.scss';
+@import '../../styles/_breakpoints.scss';
+
+.animated-logo {
+    position: relative;
+    width: 100px;  
+    height: 75px; 
+  }
+  
+  .animated-logo img {
+    position: absolute;
+    animation: logo-animation 1s infinite;
+  }
+  
+  .animated-logo img:nth-child(1) {
+    animation-delay: 0s;
+  }
+  
+  .animated-logo img:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  
+  .animated-logo img:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+  
+  .animated-logo img:nth-child(4) {
+    animation-delay: 0.6s;
+  }
+  
+  .animated-logo img:nth-child(5) {
+    animation-delay: 0.8s;
+  }
+  
+  @keyframes logo-animation {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    40% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+  
