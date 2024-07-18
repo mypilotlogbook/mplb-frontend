@@ -17,17 +17,17 @@ const MainNavigation = () => {
   return (
     <BrowserRouter>
         <Routes>
-            <Route path='/' Component={LandingPage}/>
-            <Route path='/contact-us' Component={ContactPage}/>
-            <Route path='/about-us' Component={AboutPage}/>
-            <Route path='/login' Component={LoginPage}/>
-            <Route path='/signin' Component={SignInPage}/>
-            <Route path='/forgot-password' Component={ForgotPassword}/>
-            <Route path='/change-password/:email' Component={ChangePasswordPage}/>
-            <Route path='/terms-and-conditions' Component={TermsAndConditionsPage}/>
-            <Route path='/privacy-policy' Component={PrivacyPolicyPage}/>
-            <Route path='/dashboard' Component={DashboardPage}/>
-            <Route path='*' Component={NotFoundPage}/>
+            <Route path='/' element={<LandingPage />} />
+            <Route path='/contact-us' element={<ContactPage />} />
+            <Route path='/about-us' element={<AboutPage />} />
+            <Route path='/login' element={<LoginPage />} />
+            <Route path='/signin' element={<SignInPage />} />
+            <Route path='/forgot-password' element={<ForgotPassword />} />
+            <Route path='/change-password/:email' element={<ChangePasswordPage />} />
+            <Route path='/terms-and-conditions' element={<TermsAndConditionsPage />} />
+            <Route path='/privacy-policy' element={<PrivacyPolicyPage />} />
+            <Route path='/dashboard' element={<DashboardPage />} />
+            <Route path='*' element={<NotFoundPage />} />
         </Routes>
     </BrowserRouter>
   );
