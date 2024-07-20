@@ -77,7 +77,7 @@ const LoginPage = () => {
           </Section>
 
           <div className='test register-section'>
-            <AuthSubHeader message='Dont have and account ?' color='#000000' textAlign='center'/>
+            <AuthSubHeader message='Dont have an account ?' color='#000000' textAlign='center'/>
             <Link to='/signin'>
               <AuthSubHeader message='Register' color='#359AE3' fontWeight={800} textAlign='center'/>
             </Link>
