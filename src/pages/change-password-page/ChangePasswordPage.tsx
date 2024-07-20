@@ -3,7 +3,7 @@ import './ChangePasswordPage.scss';
 
 const ChangePasswordPage = () => {
   return (
-    <div>ChangePasswordPage</div>
+    <div className='test'>ChangePasswordPage</div>
   )
 }
 

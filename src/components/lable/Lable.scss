@@ -1,0 +1,10 @@
+@import '../../styles/_colors.scss';
+@import '../../styles/_fonts.scss';
+@import '../../styles/_breakpoints.scss';
+
+.lable {
+    font-family: $primary-font;
+    font-weight: 500;
+    font-size: 12px;
+    margin-bottom: 5px;
+}

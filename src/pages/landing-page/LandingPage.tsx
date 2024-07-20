@@ -4,7 +4,7 @@ import LoadingPage from '../loading-page/LoadingPage';
 
 const LandingPage = () => {
   return (
-    <div>LandingPage</div>
+    <div className='test'>LandingPage</div>
   )
 }
 

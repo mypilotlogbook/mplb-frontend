@@ -4,7 +4,7 @@ import './SignInPage.scss';
 const SignInPage = () => {
     
   return (
-    <div>SignInPage</div>
+    <div className='test'>SignInPage</div>
   );
 
 }

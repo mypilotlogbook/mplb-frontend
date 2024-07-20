@@ -3,7 +3,7 @@ import './DashboardPage.scss';
 
 const DashboardPage = () => {
   return (
-    <div>DashboardPage</div>
+    <div className='test'>DashboardPage</div>
   )
 }
 

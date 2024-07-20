@@ -3,7 +3,7 @@ import './PrivacyPolicyPage.scss';
 
 const PrivacyPolicyPage = () => {
   return (
-    <div>PrivacyPolicyPage</div>
+    <div className='test'>PrivacyPolicyPage</div>
   )
 }
 
