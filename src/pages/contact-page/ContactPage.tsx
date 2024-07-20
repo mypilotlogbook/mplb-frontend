@@ -3,7 +3,7 @@ import './ContactPage.scss';
 
 const ContactPage = () => {
   return (
-    <div>ContactPage</div>
+    <div className='test'>ContactPage</div>
   )
 }
 

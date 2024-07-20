@@ -1,0 +1,20 @@
+@import '../../styles/_colors.scss';
+@import '../../styles/_fonts.scss';
+@import '../../styles/_breakpoints.scss';
+
+.quote-text {
+    font-family: $primary-font;
+    font-size: 35px;
+    color: $white;
+    font-weight: 700;
+
+    @media screen and (max-width: $tablet) {
+        font-size: 27px;
+    }
+    @media screen and (max-width: 946px) {
+        font-size: 25px;
+    }
+    @media screen and (max-width: $mobile-portrait) {
+        display: none;
+    }
+}

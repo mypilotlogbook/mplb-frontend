@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import './LoadingIcon.scss';
-
-type Image = {
-    src: string;
-}
+import { LogoImageProps } from '../../typescript/types/type';
 
 const LoadingIcon = () => {
 
-    const [images, setImages] = useState<Image[]>([
+    const [images, setImages] = useState<LogoImageProps[]>([
         { src: 'https://res.cloudinary.com/dv9ax00l4/image/upload/v1721331229/logo-flight-2_yoodbn.png' },
         { src: 'https://res.cloudinary.com/dv9ax00l4/image/upload/v1721331230/logo-flight-3_etxbki.png' },
         { src: 'https://res.cloudinary.com/dv9ax00l4/image/upload/v1721331229/logo-flight-4_bhdotu.png' },
@@ -15,7 +12,7 @@ const LoadingIcon = () => {
     ]);
 
     return (
-        <div className="animated-logo">
+        <div className="test animated-logo">
             {
                 images.map((image, index) => {
                     return (

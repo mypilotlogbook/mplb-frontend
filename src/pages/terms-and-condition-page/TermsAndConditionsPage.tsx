@@ -3,7 +3,7 @@ import './TermsAndConditionsPage.scss';
 
 const TermsAndConditionsPage = () => {
   return (
-    <div>TermsAndConditionsPage</div>
+    <div className='test'>TermsAndConditionsPage</div>
   )
 }
 

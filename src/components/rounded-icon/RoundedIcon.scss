@@ -1,0 +1,18 @@
+@import '../../styles/_colors.scss';
+@import '../../styles/_fonts.scss';
+@import '../../styles/_breakpoints.scss';
+
+.rounded-icon {
+    background-color: $white;
+    border-radius: 100%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2), 
+                        15px 15px 30px rgba(0, 0, 0, 0.19);
+
+    .rounded-icon-logo {
+        width: 25px;
+    }
+}

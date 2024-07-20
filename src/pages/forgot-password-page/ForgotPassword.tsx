@@ -4,7 +4,7 @@ import './ForgotPassword.scss';
 const ForgotPassword = () => {
 
   return (
-    <div>ForgotPassword</div>
+    <div className='test'>ForgotPassword</div>
   );
 
 }
