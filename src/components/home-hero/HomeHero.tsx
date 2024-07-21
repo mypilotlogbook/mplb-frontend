@@ -32,7 +32,7 @@ const HomeHero = () => {
 
             <DownArrow />
 
-            <HeroFeature />
+            <HeroFeature page='FEATURED' message='EXPLORE MY PILOT LOGBOOK'/>
 
         </div>
     </div>
