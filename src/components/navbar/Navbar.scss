@@ -32,8 +32,15 @@
     .navbar-right {
 
         .menu-icon {
+            outline: none;
+            border: none;
+            background-color: $white;
             cursor: pointer;
             width: 20px;
+
+            .menu-icon-logo {
+
+            }
         }
     }
 
@@ -102,6 +109,9 @@
                 .close-logo {
                     cursor: pointer;
                     position: absolute;
+                    outline: none;
+                    border: none;
+                    background-color: $white;
                     top: 20px;
                     right: 20px;
                     width: 20px;

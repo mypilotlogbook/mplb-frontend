@@ -41,7 +41,9 @@ const Navbar = () => {
             </Link>
         </div>
         <div className="test navbar-right">
-            <img src="https://res.cloudinary.com/dv9ax00l4/image/upload/v1721331226/hamburger_qgtsvq.png" alt="menu-icon" className='test menu-icon' onClick={openNav}/>
+            <button className='test menu-icon' onClick={openNav} aria-label="Open menu">
+                <img src="https://res.cloudinary.com/dv9ax00l4/image/upload/v1721331226/hamburger_qgtsvq.png" alt="menu-icon-logo" />
+            </button>
         </div>
 
         <div className="test nav-menu">
@@ -52,7 +54,9 @@ const Navbar = () => {
                         <Link to='/contact-us' className='test link'>Contact</Link>
                         <Link to='/about-us' className='test link'>About</Link>
                     </div>
-                    <img src="https://res.cloudinary.com/dv9ax00l4/image/upload/v1721331225/close_q1u3je.png" alt="close-logo" className="test close-logo" onClick={closeNav}/>
+                    <button className="test close-logo" onClick={closeNav} aria-label="Close menu">
+                        <img src="https://res.cloudinary.com/dv9ax00l4/image/upload/v1721331225/close_q1u3je.png" alt="close-logo" />
+                    </button>
                 </div>
                 <div className="test nav-menu-links-bottom">
                     <button className='test nav-cta-button signin' onClick={signIn}>SIGN IN</button>
