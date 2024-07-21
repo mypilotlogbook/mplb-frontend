@@ -1,0 +1,77 @@
+@import '../../styles/breakpoints';
+@import '../../styles/colors';
+@import '../../styles/fonts';
+
+.hero-feature {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: $white;
+    width: 40%;
+    border-top-right-radius: 0.25rem;
+    display: flex;
+    min-height: 120px;
+
+    .hero-feature-left {
+        background-color: $placeholder-text-color;
+        border-top-right-radius: 0.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        .featured-text {
+            transform: rotateZ(270deg);
+            font-family: $secondary-font;
+            color: $textfield-text-color;
+            font-weight: normal;
+            font-size: 14px;
+        }
+    }
+
+    .hero-feature-right {
+        background-color: $white;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        align-items: center;
+        justify-content: center;
+        padding-left: 30px;
+        border-top-left-radius: 0.25rem;
+    
+        @media screen and (max-width: $tablet) {
+            padding-left: 20px;
+        }
+        @media screen and (max-width: $mobile-portrait) {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .hero-feature-right-top {
+            font-family: $secondary-font;
+            color: $textfield-text-color;
+            font-weight: 500;
+            margin-top: 20px;
+
+            @media screen and (max-width: $tablet) {
+                font-size: 14px;
+            }
+            @media screen and (max-width: $mobile-portrait) {
+                font-size: 10px;
+            }
+        }
+
+        .hero-feature-right-bottom {
+            font-family: $primary-font;
+            font-weight: 1000;
+            color: $black;
+            margin-bottom: 20px;
+
+            @media screen and (max-width: $tablet) {
+                font-size: 14px;
+            }
+            @media screen and (max-width: $mobile-portrait) {
+                font-size: 12px;
+                font-weight: 800;
+            }
+        }
+    }
+}

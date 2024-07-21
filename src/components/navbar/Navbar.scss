@@ -1,0 +1,151 @@
+@import '../../styles/breakpoints';
+@import '../../styles/colors';
+@import '../../styles/fonts';
+
+.navbar {
+    background-color: $white;
+    margin: 0 auto;
+    max-width: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+
+    @media screen and (max-width: $mobile) {
+        padding:  20px 30px 20px 20px;
+    }
+
+    .navbar-left {
+
+        .logo-link {
+
+            .logo {
+
+                @media screen and (max-width: $mobile) {
+                    width: 75px;
+                    height: 50px;
+                }
+            }
+        }
+    }
+
+    .navbar-right {
+
+        .menu-icon {
+            cursor: pointer;
+            width: 20px;
+        }
+    }
+
+    .nav-menu {
+        width: 100%;
+        min-height: 100vh;
+        background-color: rgba(0, 0, 0, 0.404);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2;
+        display: flex;
+        justify-content: flex-end;
+        transform: translateX(100%);
+
+        .nav-menu-links {
+            background-color: $white;
+            opacity: 0;
+            width: 40%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            @media screen and (max-width: $tablet) {
+                width: 60%;
+            }
+            @media screen and (max-width: $mobile-portrait) {
+                width: 80%;
+            }
+
+            .nav-menu-links-top {
+                position: relative;
+                height: 100%;
+                padding: 60px 0 0 60px;
+
+                @media screen and (max-width: $mobile) {
+                    padding: 60px 0 0 30px;
+                }
+
+                .links {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 40px;
+
+                    .link {
+                        font-size: 40px;
+                        font-family: $primary-font;
+                        font-weight: 500;
+                        color: $black;
+                        opacity: 0;
+                        transform: translateX(50px);
+
+                        @media screen and (max-width: $mobile) {
+                            font-size: 30px;
+                        }
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+
+                .close-logo {
+                    cursor: pointer;
+                    position: absolute;
+                    top: 20px;
+                    right: 20px;
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+
+            .nav-menu-links-bottom {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                cursor: pointer;
+                padding: 0 60px 60px 60px;
+
+                @media screen and (max-width: $mobile) {
+                    padding: 60px 30px 0 30px;
+                    margin-bottom: 100px;
+                }
+
+                .nav-cta-button {
+                    outline: none;
+                    border: 2px solid $black;
+                    border-radius: 0.25rem;
+                    padding: 15px 25px;
+                    font-weight: bold;
+                    cursor: pointer;
+                    width: 75%;
+
+                    @media screen and (max-width: $mobile) {
+                        width: 100%;
+                    }
+                }
+
+                .login {
+                    background-color: $black;
+                    color: $white;
+                }
+
+                .signin {
+                    background-color: $white;
+                    color: $black;
+                }
+            }
+        }
+    }
+
+}
