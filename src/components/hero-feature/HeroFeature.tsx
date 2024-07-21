@@ -6,14 +6,14 @@ const HeroFeature = () => {
   return (
     <div className='test hero-feature'>
         <div className="test hero-feature-left">
-            <h4 className="test featured-text">FEATURED</h4>
+            <h4 className="test featured-text">CONTACT</h4>
         </div>
         <div className="test hero-feature-right">
             <div className="test hero-feature-right-top">
                 MYPILOTLOGBOOK
             </div>
             <div className="test hero-feature-right-bottom">
-                EXPLORE MY PILOT LOGBOOK
+                FILL OUT THE FORM BELOW
             </div>
         </div>
     </div>
