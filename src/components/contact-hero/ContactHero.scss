@@ -2,11 +2,11 @@
 @import '../../styles/colors';
 @import '../../styles/fonts';
 
-.home-hero {
+.contact-hero {
     position: relative;
     width: 100%;
     min-height: 100vh;
-    background-image: url('https://res.cloudinary.com/dv9ax00l4/image/upload/v1721331465/landing-pic_ozwjx7.png');
+    background-image: url('../../assets/images/contact-pic.png');
     background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
@@ -17,7 +17,7 @@
         padding: 0 20px;
     }
 
-    .home-hero-inner {
+    .contact-hero-inner {
 
         .data-container {
             max-width: 1000px;
@@ -53,43 +53,8 @@
                     font-size: 50px;
                 }
                 @media screen and (max-width: $mobile) {
-                    font-size: 50px;
-                    line-height: 50px;
-                }
-            }
-    
-            .cta-link {
-
-                .cta {
-                    border: 2px solid $white;
-                    border-radius: 0.25rem;
-                    outline: none;
-                    padding: 15px 45px;
-                    background-color: transparent;
-                    cursor: pointer;
-                    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-
-                    @media screen and (max-width: $mobile) {
-                        padding: 10px 35px;
-                    }
-
-                    .cta-text {
-                        color: $white;
-                        font-family: $primary-font;
-
-                        @media screen and (max-width: $mobile) {
-                            font-size: 12px;
-                        }
-                    }
-
-                    &:hover {
-                        background-color: black;
-                        border-color: black; 
-                    
-                        .cta-text {
-                          color: white;
-                        }
-                      }
+                    font-size: 60px;
+                    line-height: 60px;
                 }
             }
         }
