@@ -1,0 +1,24 @@
+@import '../../styles/breakpoints';
+@import '../../styles/colors';
+@import '../../styles/fonts';
+
+.down-arrow {
+    background-color: transparent;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    cursor: pointer;
+    border: 1px solid $white;
+    position: absolute;
+    bottom: 50px;
+    right: 20px;
+    width: 70px;
+    height: 70px;
+    
+    .arrow {
+        width: 20px;
+        height: 20px;
+    }
+}

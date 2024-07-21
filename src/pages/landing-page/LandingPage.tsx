@@ -1,11 +1,13 @@
 import React from 'react';
 import './LandingPage.scss';
-import LoadingPage from '../loading-page/LoadingPage';
+import HomeHero from '../../components/home-hero/HomeHero';
 
 const LandingPage = () => {
   return (
-    <div className='test'>LandingPage</div>
+    <>
+      <HomeHero />
+    </>
   )
 }
 
-export default LandingPage
+export default LandingPage;
