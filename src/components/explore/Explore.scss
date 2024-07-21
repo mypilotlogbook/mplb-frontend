@@ -1,0 +1,84 @@
+@import '../../styles/breakpoints';
+@import '../../styles/colors';
+@import '../../styles/fonts';
+
+.explore {
+    width: 100%;
+    min-height: 75vh;
+    padding: 40px 5%;
+
+    .explore-inner {
+        min-height: 75vh;
+        max-width: 1000px;
+        margin: 0 auto;
+        background-image: url('https://res.cloudinary.com/dv9ax00l4/image/upload/v1721331348/wreck-flight-pic_k810ea.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        position: relative;
+        padding: 0 5%;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .subtitle {
+            color: $white;
+            font-family: $secondary-font;
+            z-index: 1;
+            font-weight: normal;
+        }
+
+        .explore-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            z-index: 1;
+            gap: 50px;
+
+            .title {
+                color: $white;
+                font-family: $primary-font;
+                font-size: 50px;
+                font-weight: bold;
+                text-align: center;
+
+                @media screen and (max-width: $mobile) {
+                    font-size: 35px;
+                }
+            }
+
+            .link {
+
+                .explore-cta {
+                    padding: 15px 20px;
+                    border-radius: 0.25rem;
+                    border: 2px solid $white;
+                    font-family: $third-font;
+                    color: $white;
+                    background-color: transparent;
+                    cursor: pointer;
+                    width: 200px;
+
+                    &:hover {
+                        background-color: $black;
+                        color: $white;
+                        border: 2px solid $black;
+                    }
+                }
+            }
+        }
+    }
+}
