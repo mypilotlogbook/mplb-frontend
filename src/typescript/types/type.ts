@@ -36,6 +36,11 @@ export type QuoteTextProps = {
     quote: string,
 }
 
+export type HeroFeatureProps = {
+    page: string,
+    message: string
+}
+
 export type RoundedIconProps = {
     image: string,
 }
