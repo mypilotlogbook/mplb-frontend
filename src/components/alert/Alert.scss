@@ -1,0 +1,58 @@
+@import '../../styles/_colors.scss';
+@import '../../styles/_fonts.scss';
+@import '../../styles/_breakpoints.scss';
+
+.alert {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 0.25rem;
+    padding: 15px 20px;
+    gap: 20px;
+    display: grid;
+    grid-template-columns: 0.2fr 0.9fr;
+    min-height: 100px;
+    min-width: 280px;
+    max-width: 350px;
+    width: 350px;
+    background-color: $placeholder-text-color;
+    border: 1px solid gray;
+
+    .alert-left {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+
+        .logo-container {
+            background-color: $white;
+            border-radius: 100%;
+            padding: 5px;
+            
+            .logo {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    }
+
+    .alert-right {
+
+        .title {
+            font-size: 14px;
+            color: $black;
+            font-family: $primary-font;
+        }
+        .statusCode {
+            color: $black;
+            font-size: 10px;
+            font-family: $primary-font;
+        }
+        .message {
+            color: gray;
+            line-height: 15px;
+            font-size: 12px;
+            font-family: $primary-font;
+        }
+    }
+
+}

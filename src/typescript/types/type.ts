@@ -1,4 +1,5 @@
-import { ReactNode } from "react"
+import { Dispatch, ReactNode, SetStateAction } from "react"
+import { NavigateFunction } from "react-router-dom"
 
 export type AuthHeaderProps = {
     title: string
@@ -45,6 +46,12 @@ export type RoundedIconProps = {
     image: string,
 }
 
+export type AlertProps = {
+    type: 'warn'|'error'|'success',
+    statusCode: number,
+    message: string,
+}
+
 export type AuthButtonProps = {
     title: string,
     textColor?: string,
@@ -52,3 +59,14 @@ export type AuthButtonProps = {
     borderColor?: string,
     onClick?: () => void
 }
+
+export type HandleUserRegisterProps = {
+    email: string,
+    password: string,
+    resetCredentials: () => void
+    setError: Dispatch<SetStateAction<boolean>>,
+    setLoading: Dispatch<SetStateAction<boolean>>,
+    setStatusCode: Dispatch<SetStateAction<number>>,
+    setMessage: Dispatch<SetStateAction<string>>,
+    navigate: NavigateFunction,
+};
