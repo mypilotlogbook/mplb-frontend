@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './LoginPage.scss';
 import Logo from '../../components/logo/Logo';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthHeader from '../../components/auth-header/AuthHeader';
 import AuthSubHeader from '../../components/auth-subheader/AuthSubHeader';
 import Lable from '../../components/lable/Lable';
@@ -10,8 +10,48 @@ import AuthButton from '../../components/auth-button/AuthButton';
 import Section from '../../components/section/Section';
 import QuoteText from '../../components/quote-text/QuoteText';
 import RoundedIcon from '../../components/rounded-icon/RoundedIcon';
+import loginUser from '../../api/user-endpoints/loginUser';
+import LoadingPage from '../loading-page/LoadingPage';
+import Alert from '../../components/alert/Alert';
 
 const LoginPage = () => {
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [statusCode, setStatusCode] = useState(0);
+    const [message, setMessage] = useState('');
+
+    const navigate = useNavigate();
+
+    const handleEmail = (value: string) => {
+      setEmail(value);
+      console.log(value);
+    }
+    const handlePassword = (value: string) => {
+      setPassword(value);
+      console.log(value);
+    }
+    const resetCredentials = () => {
+      setEmail('');
+      setPassword('');
+    }
+
+    const handleLogin = () => {
+      loginUser({
+        email: email,
+        password: password,      
+        resetCredentials: resetCredentials,
+        setError: setError,
+        setLoading: setLoading,
+        setStatusCode: setStatusCode,
+        setMessage: setMessage,
+        navigate: navigate
+      });
+    }
+
   return (
     <div className='test login-page'>
       <div className="test login-page-left">
@@ -55,7 +95,8 @@ const LoginPage = () => {
             <Textfield 
               placeholder='Enter your email address'
               type='email'
-              onChange={ () => {}}
+              value={email}
+              onChange={handleEmail}
             />
           </div>
           
@@ -64,11 +105,12 @@ const LoginPage = () => {
             <Textfield 
               placeholder='Enter your password'
               type='password'
-              onChange={ () => {}}
+              value={password}
+              onChange={handlePassword}
             />
           </div>
 
-          <AuthButton title='Login' backgroundColor='#000' textColor='#fff' onClick={ () => {}}/>
+          <AuthButton title='Login' backgroundColor='#000' textColor='#fff' onClick={handleLogin}/>
 
           <Section marginTop='20px' marginBottom='10px'>
             <Link to='/forgot-password'>
@@ -82,6 +124,18 @@ const LoginPage = () => {
               <AuthSubHeader message='Register' color='#359AE3' fontWeight={800} textAlign='center'/>
             </Link>
           </div>
+
+          {
+            loading && <LoadingPage />
+          }
+          
+          {
+            error && <Alert
+              message={message}
+              statusCode={statusCode}
+              type='error'
+            />
+          }
 
         </div>
       </div>

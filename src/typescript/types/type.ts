@@ -70,3 +70,14 @@ export type HandleUserRegisterProps = {
     setMessage: Dispatch<SetStateAction<string>>,
     navigate: NavigateFunction,
 };
+
+export type HandleUserLoginProps = {
+    email: string,
+    password: string,
+    resetCredentials: () => void
+    setError: Dispatch<SetStateAction<boolean>>,
+    setLoading: Dispatch<SetStateAction<boolean>>,
+    setStatusCode: Dispatch<SetStateAction<number>>,
+    setMessage: Dispatch<SetStateAction<string>>,
+    navigate: NavigateFunction,
+};
