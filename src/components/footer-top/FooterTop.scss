@@ -1,0 +1,17 @@
+@import '../../styles/breakpoints';
+@import '../../styles/colors';
+@import '../../styles/fonts';
+
+.footer-top {
+    width: 100%;
+    min-height: 20vh;
+
+    @media screen and (max-width: $tablet) {
+        display: none;
+    }
+
+    .plane-img {
+        width: 40%;
+        height: 100%;
+    }
+}
