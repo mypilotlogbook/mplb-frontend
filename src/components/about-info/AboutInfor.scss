@@ -1,0 +1,24 @@
+@import '../../styles/breakpoints';
+@import '../../styles/colors';
+@import '../../styles/fonts';
+
+.about-infor {
+    margin-bottom: 30px;
+
+    .about-infor-title {
+        font-family: $secondary-font;
+        font-size: 18px;
+        margin-bottom: 10px;
+        color: $themeColor;
+    }
+
+    .about-infor-message {
+        font-family: $primary-font;
+        font-size: 14px;
+        color: $white;
+
+        @media screen and (max-width: $mobile) {
+            text-align: justify;
+        }
+    }
+}
