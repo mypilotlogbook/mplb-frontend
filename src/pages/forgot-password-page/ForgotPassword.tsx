@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ForgotPassword.scss';
 import Logo from '../../components/logo/Logo';
 import { Link } from 'react-router-dom';
@@ -10,8 +10,39 @@ import AuthButton from '../../components/auth-button/AuthButton';
 import Section from '../../components/section/Section';
 import QuoteText from '../../components/quote-text/QuoteText';
 import RoundedIcon from '../../components/rounded-icon/RoundedIcon';
+import LoadingPage from '../loading-page/LoadingPage';
+import Alert from '../../components/alert/Alert';
+import sendForgotPasswordEmail from '../../api/email-endpoints/sendForgotPasswordEmail';
 
 const ForgotPassword = () => {
+
+    const [email, setEmail] = useState('');
+
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
+    const [statusCode, setStatusCode] = useState(0);
+    const [message, setMessage] = useState('');
+
+    const handleEmail = (value: string) => {
+      console.log(value);
+      setEmail(value);
+    }
+
+    const resetCredentials = () => {
+      setEmail('');
+    }
+
+    const handleSendEmail = () => {
+      console.log(email);
+      sendForgotPasswordEmail({
+        email,
+        resetCredentials,
+        setStatusCode,
+        setMessage,
+        setError,
+        setLoading
+      });
+    }
 
     return (
       <div className='test forgotpassword-page'>
@@ -63,17 +94,30 @@ const ForgotPassword = () => {
               <Textfield 
                 placeholder='Enter your reset email'
                 type='email'
-                onChange={ () => {}}
+                value={email}
+                onChange={ (value: string) => handleEmail(value) }
               />
             </div>
 
-            <AuthButton title='Send reset link' backgroundColor='#000' textColor='#fff' onClick={ () => {}}/>
+            <AuthButton title='Send reset link' backgroundColor='#000' textColor='#fff' onClick={handleSendEmail}/>
 
             <Section marginTop='40px' marginBottom='10px'>
               <Link to='/login'>
                 <AuthSubHeader message='Back to login' color='#359AE3' textAlign='center' fontWeight={800}/>
               </Link>
             </Section>
+
+            {
+              loading && <LoadingPage />
+            }
+
+            {
+              error && <Alert 
+                statusCode={statusCode}
+                message={message}
+                type='warn'
+              />
+            }
 
           </div>
         </div>
