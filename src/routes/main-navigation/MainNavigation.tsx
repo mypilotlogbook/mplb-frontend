@@ -23,7 +23,7 @@ const MainNavigation = () => {
             <Route path='/login' element={<LoginPage />} />
             <Route path='/signin' element={<SignInPage />} />
             <Route path='/forgot-password' element={<ForgotPassword />} />
-            <Route path='/change-password/:email' element={<ChangePasswordPage />} />
+            <Route path='/change-password/:userEmail' element={<ChangePasswordPage />} />
             <Route path='/terms-and-conditions' element={<TermsAndConditionsPage />} />
             <Route path='/privacy-policy' element={<PrivacyPolicyPage />} />
             <Route path='/dashboard' element={<DashboardPage />} />
