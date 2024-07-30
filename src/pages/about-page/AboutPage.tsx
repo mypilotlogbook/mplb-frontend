@@ -2,6 +2,7 @@ import React from 'react';
 import './AboutPage.scss';
 import AboutHero from '../../components/about-hero/AboutHero';
 import AboutSection from '../../components/about-section/AboutSection';
+import FooterTop from '../../components/footer-top/FooterTop';
 
 const AboutPage = () => {
 
@@ -9,6 +10,7 @@ const AboutPage = () => {
     <>
       <AboutHero />
       <AboutSection />
+      <FooterTop />
     </>
   );
   
