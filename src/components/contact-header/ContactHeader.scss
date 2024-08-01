@@ -1,0 +1,9 @@
+@import '../../styles/breakpoints';
+@import '../../styles/colors';
+@import '../../styles/fonts';
+
+.contact-header {
+    width: 100%;
+    min-height: 20vh;
+    background-color: $black;
+}
