@@ -20,7 +20,8 @@ export type TextfieldProps = {
     type?: string,
     placeholder?: string,
     value?: string,
-    onChange: (value: string) => void
+    onChange: (value: string) => void,
+    isContact?: boolean
 }
 
 export type LogoImageProps = {
