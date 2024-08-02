@@ -5,6 +5,7 @@ import Features from '../../components/features/Features';
 import HeroVideo from '../../components/hero-video/HeroVideo';
 import Explore from '../../components/explore/Explore';
 import Footer from '../../components/footer/Footer';
+import SubscriptionForm from '../../components/subscription-form/SubscriptionForm';
 
 const LandingPage = () => {
   return (
@@ -13,6 +14,7 @@ const LandingPage = () => {
       <Features />
       <HeroVideo />
       <Explore />
+      <SubscriptionForm />
       <Footer />
     </>
   )
