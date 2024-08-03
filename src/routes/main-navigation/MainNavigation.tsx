@@ -11,6 +11,8 @@ import ChangePasswordPage from '../../pages/change-password-page/ChangePasswordP
 import ForgotPassword from '../../pages/forgot-password-page/ForgotPassword';
 import SignInPage from '../../pages/signin-page/SignInPage';
 import LoginPage from '../../pages/login-page/LoginPage';
+import Airfields from '../../pages/airfields/Airfields';
+import Overview from '../../pages/overview/Overview';
 
 const MainNavigation = () => {
 
@@ -26,7 +28,10 @@ const MainNavigation = () => {
             <Route path='/change-password/:userEmail' element={<ChangePasswordPage />} />
             <Route path='/terms-and-conditions' element={<TermsAndConditionsPage />} />
             <Route path='/privacy-policy' element={<PrivacyPolicyPage />} />
-            <Route path='/dashboard' element={<DashboardPage />} />
+            <Route path='/dashboard' element={<DashboardPage />}>
+              <Route path='' element={<Overview />}/>
+              <Route path='airfields' element={<Airfields />}/>
+            </Route>
             <Route path='*' element={<NotFoundPage />} />
         </Routes>
     </BrowserRouter>
