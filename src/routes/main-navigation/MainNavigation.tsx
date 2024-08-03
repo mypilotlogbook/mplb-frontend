@@ -13,6 +13,12 @@ import SignInPage from '../../pages/signin-page/SignInPage';
 import LoginPage from '../../pages/login-page/LoginPage';
 import Airfields from '../../pages/airfields/Airfields';
 import Overview from '../../pages/overview/Overview';
+import Settings from '../../pages/settings/Settings';
+import HelpCenter from '../../pages/help-center/HelpCenter';
+import Profile from '../../pages/profile/Profile';
+import Aircarfts from '../../pages/aircrafts/Aircarfts';
+import Pilots from '../../pages/pilots/Pilots';
+import Flights from '../../pages/flights/Flights';
 
 const MainNavigation = () => {
 
@@ -31,6 +37,12 @@ const MainNavigation = () => {
             <Route path='/dashboard' element={<DashboardPage />}>
               <Route path='' element={<Overview />}/>
               <Route path='airfields' element={<Airfields />}/>
+              <Route path='aircrafts' element={<Aircarfts />}/>
+              <Route path='profile' element={<Profile />}/>
+              <Route path='settings' element={<Settings />}/>
+              <Route path='help-center' element={<HelpCenter />}/>
+              <Route path='pilots' element={<Pilots />}/>
+              <Route path='flights' element={<Flights />}/>
             </Route>
             <Route path='*' element={<NotFoundPage />} />
         </Routes>
