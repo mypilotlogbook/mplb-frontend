@@ -103,3 +103,10 @@ export type HandleChangePasswordProps = {
     setMessage: Dispatch<SetStateAction<string>>,
     navigate: NavigateFunction,
 };
+
+export type NavLinkProps = {
+    id: number,
+    iconName: string,
+    name: string,
+    route: string,
+}
