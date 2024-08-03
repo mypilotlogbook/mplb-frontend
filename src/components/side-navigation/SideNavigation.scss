@@ -2,10 +2,8 @@
 @import '../../styles/colors';
 @import '../../styles/fonts';
 
-.dashboard {
-    display: grid;
-    grid-template-columns: 0.2fr 0.8fr;
+.side-navigation {
     width: 100%;
     min-height: 100vh;
-    background-color: red;
+    background-color: greenyellow;
 }
