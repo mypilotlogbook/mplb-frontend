@@ -110,3 +110,8 @@ export type NavLinkProps = {
     name: string,
     route: string,
 }
+
+export type PageHeaderProps = {
+    title: string,
+    subTitle: string,
+}

@@ -1,0 +1,25 @@
+@import '../../styles/breakpoints';
+@import '../../styles/fonts';
+@import '../../styles/colors';
+
+.page-header {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px 30px;
+    background-color: rgb(246, 246, 246);
+    border-bottom: 1px solid rgb(207, 207, 207);
+
+    .page-title {
+        font-family: $primary-font;
+        color: $black;
+    }
+
+    .page-subtitle {
+        font-family: $primary-font;
+        color: $textfield-text-color;
+        font-weight: normal;
+    }
+}
