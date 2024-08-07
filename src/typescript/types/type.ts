@@ -5,6 +5,10 @@ export type AuthHeaderProps = {
     title: string
 }
 
+export type BackButtonProps = {
+    image: string
+}
+
 export type AuthSubHeaderProps = {
     message: string,
     color?: string,
