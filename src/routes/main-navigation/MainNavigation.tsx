@@ -19,6 +19,7 @@ import Profile from '../../pages/profile/Profile';
 import Aircarfts from '../../pages/aircrafts/Aircarfts';
 import Pilots from '../../pages/pilots/Pilots';
 import Flights from '../../pages/flights/Flights';
+import SingleAirfield from '../../pages/single-airfield/SingleAirfield';
 
 const MainNavigation = () => {
 
@@ -43,6 +44,7 @@ const MainNavigation = () => {
               <Route path='help-center' element={<HelpCenter />}/>
               <Route path='pilots' element={<Pilots />}/>
               <Route path='flights' element={<Flights />}/>
+              <Route path='airfield/:airfieldId' element={<SingleAirfield />}/>
             </Route>
             <Route path='*' element={<NotFoundPage />} />
         </Routes>

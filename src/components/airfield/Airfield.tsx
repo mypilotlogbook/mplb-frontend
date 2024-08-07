@@ -1,10 +1,12 @@
 import React from 'react'
 import './Airfield.scss';
 import { AirfieldProps } from '../../typescript/interfaces/interface';
+import { Link } from 'react-router-dom';
 
 const Airfield = (props: AirfieldProps) => {
   return (
-    <div className="test airfield">
+    <Link to={`/dashboard/airfield/${props._id}`}>
+      <div className="test airfield">
         <div className="test header">
           <h5 className="test header-text">{props.airport_name}</h5>
         </div>
@@ -20,7 +22,8 @@ const Airfield = (props: AirfieldProps) => {
         <div className="test header">
           <h5 className="test header-text">{props.iata}</h5>
         </div>
-    </div>
+      </div>
+    </Link>
   )
 }
 

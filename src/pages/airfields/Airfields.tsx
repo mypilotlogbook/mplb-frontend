@@ -111,11 +111,17 @@ const Airfields = () => {
             filteredAirfields.map((airfield, index) => {
               return (
                 <Airfield
+                  _id={airfield._id}
+                  airfield_code={airfield.airfield_code}
                   airport_name={airfield.airport_name}
                   country={airfield.country}
                   airfield_category={airfield.airfield_category}
                   icao={airfield.icao}
                   iata={airfield.iata}
+                  elevation={airfield.elevation}
+                  timezone={airfield.timezone}
+                  createdAt={airfield.createdAt}
+                  updatedAt={airfield.updatedAt}
                   key={index}
                 />
               )
