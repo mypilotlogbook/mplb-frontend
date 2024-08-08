@@ -5,4 +5,157 @@
 .profile {
     width: 100%;
     min-height: 100vh;
+
+    .profile-section {
+        width: 100%;
+        min-height: calc(100vh - 80px);
+        max-height: calc(100vh - 80px);
+        overflow-y: scroll;
+        padding: 30px 30px 0 30px;
+        position: relative;
+        padding-bottom: 20px;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        .banner {
+            width: 100%;
+            max-height: 100px;
+            min-height: 100px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: -1;
+            background-image: url('https://res.cloudinary.com/dv9ax00l4/image/upload/v1723136062/sky_ubymcg.avif');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .user-description-section {
+            width: 100%;
+            border-bottom: 1px solid $text-field-color;
+            padding-bottom: 20px;
+            margin-top: 50px;
+
+            .email {
+                color: $black;
+                font-family: $primary-font;
+                cursor: pointer;
+                width: fit-content;
+                margin-bottom: 10px;
+            }
+
+            .description {
+                color: $textfield-text-color;
+                font-family: $primary-font;
+                font-weight: normal;
+            }
+        }
+
+        .name-container {
+            display: grid;
+            grid-template-columns: 20% 80%;
+
+            .name-container-left {
+
+                .profile-image-container {
+                    border: 1px solid rgb(219, 219, 219);
+                    width: 150px;
+                    height: 150px;
+                    border-radius: 50%;
+                    padding: 5px;
+                    background-color: $white;
+                    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1), 
+                        15px 15px 30px rgba(0, 0, 0, 0.1);
+
+                    .profile-image {
+                        width: 100%;
+                        border-radius: 50%;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            .name-container-right {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                gap: 5px;
+
+                .name {
+                    color: $black;
+                    font-family: $primary-font;
+                    cursor: pointer;
+                    width: fit-content;
+                }
+
+                .userId {
+                    color: $textfield-text-color;
+                    font-family: $primary-font;
+                    font-weight: normal;
+                    cursor: pointer;
+                    width: fit-content;
+                }
+            }
+        }
+    }
+
+    .section1 {
+        width: 100%;
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid $text-field-color;
+        padding-bottom: 10px;
+
+        .section1-left {
+
+            .lable {
+                color: $black;
+                font-family: $primary-font;
+                font-weight: 700;
+                font-size: 20px;
+            }
+
+            .sub-lable {
+                color: $textfield-text-color;
+                font-family: $primary-font;
+                font-weight: normal;
+            }
+        }
+
+        .section1-right {
+
+            .save-button {
+                background-color: $black;
+                color: $white;
+                border-radius: 0.25rem;
+                padding: 10px 30px;
+                cursor: pointer;
+                border: none;
+                outline: none;
+                font-family: $primary-font;
+                font-size: 13px;
+            }
+        }
+    }
+
+    .section2 {
+        width: 100%;
+        padding-top: 20px;
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(2, 1fr);
+
+        .section2-left, .section2-right {
+
+            .input {
+                margin-bottom: 10px;
+            }
+        }
+    }
 }
