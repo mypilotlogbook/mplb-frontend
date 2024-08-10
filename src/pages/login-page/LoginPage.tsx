@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './LoginPage.scss';
 import Logo from '../../components/logo/Logo';
 import { Link, useNavigate } from 'react-router-dom';
@@ -13,6 +13,8 @@ import RoundedIcon from '../../components/rounded-icon/RoundedIcon';
 import loginUser from '../../api/user-endpoints/loginUser';
 import LoadingPage from '../loading-page/LoadingPage';
 import Alert from '../../components/alert/Alert';
+import { TokenContext } from '../../context/TokenContext';
+import { IdContext } from '../../context/UserIdContext';
 
 const LoginPage = () => {
 
@@ -25,6 +27,17 @@ const LoginPage = () => {
     const [message, setMessage] = useState('');
 
     const navigate = useNavigate();
+
+    const tokenContext = useContext(TokenContext);
+    const updateToken = tokenContext?.updateToken;
+    if (!updateToken) {
+      throw new Error('Token context is not available');
+    } 
+    const idContext = useContext(IdContext);
+    const updateId = idContext?.updateId;
+    if (!updateId) {
+      throw new Error('Id context is not available');
+    } 
 
     const handleEmail = (value: string) => {
       setEmail(value);
@@ -48,7 +61,9 @@ const LoginPage = () => {
         setLoading: setLoading,
         setStatusCode: setStatusCode,
         setMessage: setMessage,
-        navigate: navigate
+        navigate: navigate,
+        updateToken: updateToken,
+        updateId: updateId
       });
     }
 

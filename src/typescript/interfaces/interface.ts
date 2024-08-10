@@ -32,3 +32,30 @@ export type getAirFieldProps = {
     airfieldId: string | undefined,
     setAirfield: (data: any) => void
 }
+
+export interface User {
+    _id: string,
+    image: string,
+    email: string,
+    password?: string,
+    __v: number,
+    age: string,
+    company: string,
+    country: string,
+    description: string,
+    fname: string,
+    lname: string,
+    position: string,
+}
+
+export interface UpdateUser {
+    image?: string,
+    email?: string,
+    age?: string,
+    company?: string,
+    country?: string,
+    description?: string,
+    fname?: string,
+    lname?: string,
+    position?: string,
+}

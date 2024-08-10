@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './SideNavigation.scss';
 import AuthSubHeader from '../auth-subheader/AuthSubHeader';
 import NavigationLink from '../nav-link/NavigationLink';
 import Section from '../section/Section';
+import { IdContext } from '../../context/UserIdContext';
+import getSingleUser from '../../api/user-endpoints/getSingleUser';
+import { User } from '../../typescript/interfaces/interface';
 
 const SideNavigation = () => {
+
+    const [user, setUser] = useState<User | undefined>(undefined); 
+
+    const idContext = useContext(IdContext);
+    const id = idContext?.id;
+    if (!id) {
+      throw new Error('Id context is not available');
+    } 
 
     const mainNavLinks = [
         {
@@ -43,30 +54,6 @@ const SideNavigation = () => {
             route: '/dashboard/flights',
             iconName: 'https://res.cloudinary.com/dv9ax00l4/image/upload/v1722720946/plane-alt_fabie8.png'
         },
-        // {
-        //     id: 1,
-        //     name: 'Overview',
-        //     route: '/dashboard',
-        //     iconName: 'https://res.cloudinary.com/dv9ax00l4/image/upload/v1722709010/house-chimney_xg1gnt.png'
-        // },
-        // {
-        //     id: 2,
-        //     name: 'Airfields',
-        //     route: '/dashboard/airfields',
-        //     iconName: ''
-        // },
-        // {
-        //     id: 3,
-        //     name: 'Aircrafts',
-        //     route: '/dashboard/aircrafts',
-        //     iconName: ''
-        // },
-        // {
-        //     id: 4,
-        //     name: 'Profile',
-        //     route: '/dashboard/profile',
-        //     iconName: ''
-        // },
     ]
 
     const otherNavLinks = [
@@ -83,6 +70,17 @@ const SideNavigation = () => {
             iconName: 'https://res.cloudinary.com/dv9ax00l4/image/upload/v1722720593/seal-question_trckb0.png'
         },
     ]
+
+    const getUserInfor = () => {
+        getSingleUser({
+            id: id,
+            setUser: setUser
+        });
+    }
+
+    useEffect( () => {
+        getUserInfor();
+    }, [])
 
     return (
         <div className='test side-navigation'>
@@ -127,11 +125,11 @@ const SideNavigation = () => {
             </div>
             <div className="test nav-footer">
                 <div className="test nav-footer-left">
-                    <img src='https://res.cloudinary.com/dv9ax00l4/image/upload/v1722707589/profile-photo_lxgabd.avif' alt='profile-img' className="test profile-img" />
+                    <img src={ user?.image } alt='profile-img' className="test profile-img" />
                 </div>
                 <div className="test nav-footer-right">
-                    <h6 className="test name">Jeral Sandeeptha</h6>
-                    <h6 className="test email">jeral.sandeeptha1@gmail.com</h6>
+                    <h6 className="test name">{ user?.fname && user?.lname ? `${user?.fname} ${user?.lname}` : 'Guest' }</h6>
+                    <h6 className="test email">{ user?.email }</h6>
                 </div>
             </div>
         </div>
