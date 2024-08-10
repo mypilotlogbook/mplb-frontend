@@ -1,5 +1,6 @@
 import { Dispatch, ReactNode, SetStateAction } from "react"
 import { NavigateFunction } from "react-router-dom"
+import { UpdateUser, User } from "../interfaces/interface"
 
 export type AuthHeaderProps = {
     title: string
@@ -25,7 +26,8 @@ export type TextfieldProps = {
     placeholder?: string,
     value?: string,
     onChange: (value: string) => void,
-    isContact?: boolean
+    isContact?: boolean,
+    name?: string;
 }
 
 export type LogoImageProps = {
@@ -85,6 +87,8 @@ export type HandleUserLoginProps = {
     setStatusCode: Dispatch<SetStateAction<number>>,
     setMessage: Dispatch<SetStateAction<string>>,
     navigate: NavigateFunction,
+    updateToken: (token: string) => void,
+    updateId: (id: string) => void
 };
 
 export type HandleSendForgotPasswordEmailProps = {
@@ -118,4 +122,40 @@ export type NavLinkProps = {
 export type PageHeaderProps = {
     title: string,
     subTitle: string,
+}
+
+export type GetUserProps = {
+    setName: Dispatch<SetStateAction<string>>,
+    id: string | null
+}
+
+export type GetUserEmailProps = {
+    setEmail: Dispatch<SetStateAction<string>>,
+    id: string | null
+}
+
+export type GetSingleUserProps = {
+    setUser: Dispatch<SetStateAction<User | undefined>>,
+    setFormData?: Dispatch<SetStateAction<UpdateUser | undefined>>,
+    id: string | null
+}
+
+export type DashboardTextfieldProps = {
+    type: string;
+    name: string;
+    value: string;
+    placeholder: string;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export type UpdateUserProps = {
+    id: string,
+    setUser: Dispatch<SetStateAction<User | undefined>>,
+    setFormData?: Dispatch<SetStateAction<UpdateUser | undefined>>,
+    formData?: UpdateUser | undefined
+    setError: Dispatch<SetStateAction<boolean>>,
+    setSuccess: Dispatch<SetStateAction<boolean>>,
+    setStatusCode: Dispatch<SetStateAction<number>>,
+    setMessage: Dispatch<SetStateAction<string>>,
+    getSingleUser?: (props: GetSingleUserProps) => void,
 }

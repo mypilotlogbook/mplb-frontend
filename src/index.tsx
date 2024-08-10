@@ -2,12 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
 import App from './App';
+import TokenProvider from './context/TokenContext';
+import IdProvider from './context/UserIdContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <TokenProvider>
+    <IdProvider>
+      <App />
+    </IdProvider>
+  </TokenProvider>
 );

@@ -19,6 +19,8 @@ const loginUser = async (props: HandleUserLoginProps) => {
                   })
                     .then( (res) => {
                       console.log(res.data.data);
+                      props.updateToken(res.data.data.token);
+                      props.updateId(res.data.data._id);
                       props.resetCredentials();
                       props.setLoading(true);
                       setTimeout(() => {

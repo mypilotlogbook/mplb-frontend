@@ -19,6 +19,7 @@ const Textfield = (props: TextfieldProps) => {
             type={props.type}
             onChange={handleChange}
             value={props.value}
+            name={props.name}
             style={{
                 backgroundColor: props.isContact ? 'white' : '#F0F0F0'
             }}

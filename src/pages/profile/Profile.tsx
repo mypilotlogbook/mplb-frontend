@@ -1,39 +1,108 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Profile.scss';
 import PageHeader from '../../components/page-header/PageHeader';
 import { Tooltip } from '@mui/material';
 import Textfield from '../../components/textfield/Textfield';
 import Lable from '../../components/lable/Lable';
+import { UpdateUser, User } from '../../typescript/interfaces/interface';
+import getSingleUser from '../../api/user-endpoints/getSingleUser';
+import { IdContext } from '../../context/UserIdContext';
+import DashboardTextfield from '../../components/dashboard-textfield/DashboardTextfield';
+import updateUser from '../../api/user-endpoints/updateUser';
+import Alert from '../../components/alert/Alert';
 
 const Profile = () => {
+
+  const [user, setUser] = useState<User | undefined>(undefined); 
+  const [formData, setFormData] = useState<UpdateUser>();
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [statusCode, setStatusCode] = useState(0);
+  const [message, setMessage] = useState('');
+
+  const idContext = useContext(IdContext);
+  const id = idContext?.id;
+  if (!id) {
+    throw new Error('Id context is not available');
+  } 
+
+  const handleUpdateUser = () => {
+    updateUser({
+      id: id,
+      setUser: setUser,
+      setFormData: setFormData,
+      formData: formData,
+      setError: setError,
+      setSuccess: setSuccess,
+      setMessage: setMessage,
+      setStatusCode: setStatusCode,
+      getSingleUser: getSingleUser
+    });
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const getUserInfor = () => {
+    getSingleUser({
+      setUser: setUser,
+      setFormData: setFormData,
+      id: id
+    });
+  }
+
+  useEffect(() => {
+    getUserInfor();
+  }, []);
+
   return (
     <div className='profile'>
       <PageHeader
         title='Profile'
         subTitle='Here is your profile. Update and manage your profile details.'
       />
+
+      {
+        error && <Alert
+          message={message}
+          statusCode={statusCode}
+          type='error'
+        />
+      }
+      {
+        success && <Alert
+          message={message}
+          statusCode={statusCode}
+          type='success'
+        />
+      }
+
       <div className="profile-section">
         <div className="banner"></div>
         <div className="name-container">
           <div className="test name-container-left">
             <div className="test profile-image-container">
               <Tooltip title="Profile Image" arrow>
-                <img src="https://res.cloudinary.com/dv9ax00l4/image/upload/v1722707589/profile-photo_lxgabd.avif" alt="profile-img" className="test profile-image" />
+                <img src={user?.image} alt="profile-img" className="test profile-image" />
               </Tooltip>
             </div>
           </div>
           <div className="test name-container-right">
             <Tooltip title="User Name" arrow>
-              <h1 className="test name">Jeral Sandeeptha</h1>
+              <h1 className="test name">{ user?.fname && user?.lname ? `${user?.fname} ${user?.lname}` : user?.email }</h1>
             </Tooltip>
             <Tooltip title="User Id" arrow>
-              <h5 className="test userId">66a12d5b7c80a1687211c0a9</h5>
+              <h5 className="test userId">{ user?._id }</h5>
             </Tooltip>
           </div>
         </div>
         <div className="test user-description-section">
-          <h3 className="test email">jeral.sandeeptha1@gmail.com</h3>
-          <h6 className="test description">This is my profile. This is my description. Update your user profile and details here.</h6>
+          <h3 className="test email">{ user?.email }</h3>
+          <h6 className="test description">{ user?.description ? user?.description : 'Update your description to show here' }</h6>
         </div>
         <div className="test section1">
           <div className="test section1-left">
@@ -42,7 +111,7 @@ const Profile = () => {
           </div>
           <div className="test section1-right">
             <Tooltip title="Click here to save your changes" arrow>
-              <button className="test save-button">Save Changes</button>
+              <button className="test save-button" onClick={handleUpdateUser}>Save Changes</button>
             </Tooltip>
           </div>
         </div>
@@ -52,44 +121,48 @@ const Profile = () => {
               <Lable 
                 title='First Name'
               />
-              <Textfield 
+              <DashboardTextfield 
                 type='text'
-                value='Jeral'
+                name='fname'
+                value={formData?.fname || ''}
                 placeholder='Enter your first name'
-                onChange={() => {}}
+                onChange={handleChange}
               />
             </div>
             <div className="test input">
               <Lable 
                 title='Age'
               />
-              <Textfield 
+              <DashboardTextfield 
                 type='text'
-                value='24'
+                name='age'
+                value={formData?.age || ''}
                 placeholder='Enter your age'
-                onChange={() => {}}
+                onChange={handleChange}
               />
             </div>
             <div className="test input">
               <Lable 
                 title='Profile Image'
               />
-              <Textfield 
+              <DashboardTextfield 
                 type='text'
-                value=''
+                name='image'
+                value={formData?.image || ''}
                 placeholder='Give your profile image url / link'
-                onChange={() => {}}
+                onChange={handleChange}
               />
             </div>
             <div className="test input">
               <Lable 
                 title='Company'
               />
-              <Textfield 
+              <DashboardTextfield 
                 type='text'
-                value='Sri Lankan Airlines'
+                name='company'
+                value={formData?.company || ''}
                 placeholder='Enter your company name'
-                onChange={() => {}}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -98,44 +171,48 @@ const Profile = () => {
               <Lable 
                 title='Last Name'
               />
-              <Textfield 
+              <DashboardTextfield 
                 type='text'
-                value='Sandeeptha'
+                name='lname'
+                value={formData?.lname || ''}
                 placeholder='Enter your last name'
-                onChange={() => {}}
+                onChange={handleChange}
               />
             </div>
             <div className="test input">
               <Lable 
                 title='Country'
               />
-              <Textfield 
+              <DashboardTextfield 
                 type='text'
-                value='Sri Lanka'
+                name='country'
+                value={formData?.country || ''}
                 placeholder='Enter your country name'
-                onChange={() => {}}
+                onChange={handleChange}
               />
             </div>
             <div className="test input">
               <Lable 
                 title='Description'
               />
-              <Textfield 
+              <DashboardTextfield 
                 type='text'
-                value='This is my description'
+                name='description'
+                value={formData?.description || ''}
                 placeholder='Enter your description'
-                onChange={() => {}}
+                onChange={handleChange}
               />
             </div>
             <div className="test input">
               <Lable 
                 title='Position'
               />
-              <Textfield 
+              <DashboardTextfield 
                 type='text'
-                value='Senior Pilot'
+                name='position'
+                value={formData?.position || ''}
                 placeholder='Enter your position'
-                onChange={() => {}}
+                onChange={handleChange}
               />
             </div>
           </div>
