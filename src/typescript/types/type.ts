@@ -1,6 +1,6 @@
 import { Dispatch, ReactNode, SetStateAction } from "react"
 import { NavigateFunction } from "react-router-dom"
-import { UpdateUser, User } from "../interfaces/interface"
+import { AircraftProps, UpdateUser, User } from "../interfaces/interface"
 
 export type AuthHeaderProps = {
     title: string
@@ -158,4 +158,9 @@ export type UpdateUserProps = {
     setStatusCode: Dispatch<SetStateAction<number>>,
     setMessage: Dispatch<SetStateAction<string>>,
     getSingleUser?: (props: GetSingleUserProps) => void,
+}
+
+export type getAircraftsByUserIdProps = {
+    userId: string | null,
+    setAircrafts: Dispatch<SetStateAction<AircraftProps[]>>
 }

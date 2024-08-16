@@ -20,6 +20,8 @@ import Aircarfts from '../../pages/aircrafts/Aircarfts';
 import Pilots from '../../pages/pilots/Pilots';
 import Flights from '../../pages/flights/Flights';
 import SingleAirfield from '../../pages/single-airfield/SingleAirfield';
+import AddAircraft from '../../pages/add-aircraft/AddAircraft';
+import SingleAircraft from '../../pages/single-aircraft/SingleAircraft';
 
 const MainNavigation = () => {
 
@@ -39,6 +41,8 @@ const MainNavigation = () => {
               <Route path='' element={<Overview />}/>
               <Route path='airfields' element={<Airfields />}/>
               <Route path='aircrafts' element={<Aircarfts />}/>
+              <Route path='aircraft/:aircraftId' element={<SingleAircraft />}/>
+              <Route path='aircraft/add-aircraft' element={<AddAircraft />}/>
               <Route path='profile' element={<Profile />}/>
               <Route path='settings' element={<Settings />}/>
               <Route path='help-center' element={<HelpCenter />}/>

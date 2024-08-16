@@ -1,0 +1,30 @@
+@import '../../styles/breakpoints';
+@import '../../styles/colors';
+@import '../../styles/fonts';
+
+.aircraft {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 1px;
+    background-color: rgb(239, 239, 239);
+    
+    &:hover {
+        background-color: rgb(228, 228, 228);
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px 0;
+
+        .header-text {
+            color: rgb(73, 73, 73);
+            font-family: $primary-font;
+            font-size: 12px;
+            font-weight: normal;
+        }
+    }
+}
