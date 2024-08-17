@@ -112,3 +112,16 @@ export interface PilotProps {
     userId?: string,
     __v?: number,
 }
+
+export interface UpdatePilot {
+    image?: string,
+    fname?: string,
+    lname?: string,
+    age?: string,
+    email?: string,
+    company?: string,
+    position?: string,
+    employee_id?: string,
+    mobile?: string,
+    address?: string,
+}
