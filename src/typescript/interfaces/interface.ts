@@ -96,3 +96,19 @@ export interface AircraftProps {
     createdAt?: string;
     updatedAt?: string;
 }
+
+export interface PilotProps {
+    _id?: string,
+    image?: string,
+    fname?: string,
+    lname?: string,
+    age?: string,
+    email?: string,
+    company?: string,
+    position?: string,
+    employee_id?: string,
+    mobile?: string,
+    address?: string,
+    userId?: string,
+    __v?: number,
+}
