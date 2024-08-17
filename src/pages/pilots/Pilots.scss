@@ -1,0 +1,123 @@
+@import '../../styles/breakpoints';
+@import '../../styles/colors';
+@import '../../styles/fonts';
+
+.pilots {
+    width: 100%;
+    max-height: 100vh;
+    overflow-y: hidden;
+
+    .search-section {
+        width: 100%;
+        min-height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px 30px;
+        gap: 15px;
+
+        .add-pilot-btn-link {
+
+            .add-pilot-btn {
+                width: 100%;
+                border: none;
+                border-radius: 0.25rem;
+                color: $white;
+                background-color: $black;
+                padding: 5px 30px;
+                font-family: $primary-font;
+                cursor: pointer;
+            }
+        }
+
+        .searchbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            gap: 20px;
+            background-color: $placeholder-text-color;
+            padding-right: 20px;
+            border-radius: 0.25rem;
+
+            .search-input {
+                width: 100%;
+                background-color: $placeholder-text-color;
+                outline: none;
+                border: none;
+                border-radius: 0.25rem;
+                padding: 15px 20px;
+                font-family: $primary-font;
+                font-size: 12px;
+                color: $textfield-text-color;
+            }
+
+            .search-logo {
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .search-results {
+        width: 100%;
+        padding: 0 30px;
+
+        .search-results-text {
+            color: $black;
+            font-family: $primary-font;
+            font-size: 12px;
+
+            .result-count {
+                color: $black;
+            }
+        }
+    }
+
+    .pilots-table {
+        width: 100%;
+        max-height: 50vh;
+        padding: 20px 30px 0 30px;
+        
+        .table-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            border-top-left-radius: 0.25rem;
+            border-top-right-radius: 0.25rem;
+            border-bottom: 1.5px solid rgb(205, 205, 205);
+
+            .header {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: $placeholder-text-color;
+                padding: 15px 0;
+
+                &:first-child {
+                    border-top-left-radius: 0.25rem;
+                }
+                &:last-child {
+                    border-top-right-radius: 0.25rem;
+                }
+
+                .header-text {
+                    color: $black;
+                    font-family: $primary-font;
+                    font-size: 12px;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        .table-body {
+            width: 100%;
+            max-height: 60vh;
+            overflow-y: scroll;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+    }
+}
