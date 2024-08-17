@@ -1,0 +1,137 @@
+@import '../../styles/breakpoints';
+@import '../../styles/colors';
+@import '../../styles/fonts';
+
+.single-pilot {
+    width: 100%;
+    max-height: 100vh;
+
+    .single-pilot-header {
+        width: 100%;
+        height: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 5px 30px;
+        background-color: rgb(246, 246, 246);
+        border-bottom: 1px solid rgb(207, 207, 207);
+        gap: 5px;
+
+        .page-subtitle {
+            font-family: $primary-font;
+            color: $textfield-text-color;
+            font-weight: normal;
+        }
+    }
+
+    .single-pilot-content {
+        width: 100%;
+        min-height: calc(100vh - 80px);
+        max-height: calc(100vh - 80px);
+        overflow-y: scroll;
+        padding: 30px 30px 0 30px;
+        position: relative;
+        padding-bottom: 20px;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        .profile-img-section {
+            width: 100%;
+            // background-color: rebeccapurple;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .profile-pic-container {
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                // background-color: green;
+
+                .profile-image {
+                    width: 200px;
+                    height: 200px;
+                    border-radius: 50%;
+                    border: 1px solid rgb(219, 219, 219);
+                    cursor: pointer;
+                    object-fit: cover;
+                    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1), 
+                        15px 15px 30px rgba(0, 0, 0, 0.1);
+                    // background-color: blue;
+                }
+            }
+        }
+
+        .section1 {
+            width: 100%;
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid $text-field-color;
+            padding-bottom: 10px;
+            margin-top: 20px;
+    
+            .section1-left {
+    
+                .lable {
+                    color: $black;
+                    font-family: $primary-font;
+                    font-weight: 700;
+                    font-size: 20px;
+                }
+    
+                .sub-lable {
+                    color: $textfield-text-color;
+                    font-family: $primary-font;
+                    font-weight: normal;
+                }
+            }
+    
+            .section1-right {
+    
+                .save-button {
+                    background-color: $black;
+                    color: $white;
+                    border-radius: 0.25rem;
+                    padding: 10px 30px;
+                    cursor: pointer;
+                    border: none;
+                    outline: none;
+                    font-family: $primary-font;
+                    font-size: 13px;
+                    margin-right: 10px;
+                }
+
+                .delete-button {
+                    background-color: rgb(140, 140, 140);
+                    color: $white;
+                    border-radius: 0.25rem;
+                    padding: 10px 30px;
+                    cursor: pointer;
+                    border: none;
+                    outline: none;
+                    font-family: $primary-font;
+                    font-size: 13px;
+                }
+            }
+        }
+
+        .section2 {
+            width: 100%;
+            padding-top: 20px;
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+    
+            .section2-left, .section2-right {
+    
+                .input {
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+}
