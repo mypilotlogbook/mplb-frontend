@@ -4,12 +4,13 @@ import Tooltip from '@mui/material/Tooltip';
 import { TokenContext } from '../../context/TokenContext';
 import { useNavigate } from 'react-router-dom';
 import { IdContext } from '../../context/UserIdContext';
-import getUser from '../../api/user-endpoints/getUser';
 import getUserName from '../../api/user-endpoints/getUser';
+import { getDayHoursAndSetGreeting } from '../../utils/getDayHour';
 
 const DashboardHeader = () => {
 
     const [name, setName] = useState('');
+    const [greeting, setGreeting] = useState('');
 
     const tokenContext = useContext(TokenContext);
     const idContext = useContext(IdContext);
@@ -44,14 +45,19 @@ const DashboardHeader = () => {
         });
     }
 
+    const setGreetingText = () => {
+        setGreeting(getDayHoursAndSetGreeting());
+    }
+
     useEffect( () => {
         getUserInfor();
+        setGreetingText();
     }, [])
 
     return (
         <div className='test dashboard-header'>
             <div className="test dashboard-header-left">
-                <h2 className="test welcome-text">Good Morning, 
+                <h2 className="test welcome-text">{greeting},
                     <span className="test name">{token ? name : 'Guest'}</span> 
                     <span className="test bye">👋</span>
                 </h2>
