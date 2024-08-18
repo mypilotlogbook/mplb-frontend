@@ -197,3 +197,10 @@ export type UpdatePilotProps = {
     getPilotById?: (props: getPilotPropsById) => void,
     setPilot?: Dispatch<SetStateAction<PilotProps | undefined>>,
 }
+
+export type OverviewCardProps = {
+    image?: string,
+    title?: string,
+    description?: string,
+    count?: number,
+}
