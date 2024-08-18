@@ -6,12 +6,41 @@ import getPilotsByUserId from '../../api/pilot-endpoints/getPilotsByUserId';
 import { AircraftProps, AirfieldProps, PilotProps } from '../../typescript/interfaces/interface';
 import { IdContext } from '../../context/UserIdContext';
 import { Link } from 'react-router-dom';
+import {
+    LineChart,
+    Line,
+    XAxis,
+    YAxis,
+    CartesianGrid,
+    Tooltip,
+    Legend,
+    ResponsiveContainer,
+} from 'recharts';
+import Spline from '@splinetool/react-spline';
+import { Skeleton } from '@mui/material';
+
+type ChartData = {
+    name: string;
+    value: number;
+}[];
 
 const Overview = () => {
+
+    const data: ChartData = [
+        { name: 'Jan', value: 400 },
+        { name: 'Feb', value: 300 },
+        { name: 'Mar', value: 200 },
+        { name: 'Apr', value: 278 },
+        { name: 'May', value: 189 },
+        { name: 'May', value: 189 },
+        { name: 'May', value: 189 },
+    ];
 
     const [pilots, setPilots] = useState<PilotProps[]>([]);
     const [airfields, setAirfields] = useState<AirfieldProps[]>([]);
     const [aircrafts, setAircrafts] = useState<AircraftProps[]>([]);
+
+    const [loaded, setLoaded] = useState(false);
 
     const idContext = useContext(IdContext);
     if(!idContext) {
@@ -36,7 +65,38 @@ const Overview = () => {
 
             <div className="test dashboard-content">
 
-                <div className="test analytics-section"></div>
+                <div className="test analytics-section">
+                    <h3 className="test section-header">Analytics</h3>
+                    <h5 className="test section-subheader">Your data visualization</h5>
+                    <hr className="test line" />
+                    <div className="test chart-container">
+                        <div className="test left">
+                            <Link to='/dashboard/analytics'>
+                                <ResponsiveContainer width="100%" height={200}>
+                                    <LineChart data={data}>
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <XAxis dataKey="name" />
+                                        <YAxis />
+                                        <Tooltip />
+                                        <Legend />
+                                        <Line type="monotone" dataKey="value" stroke="#8884d8" />
+                                    </LineChart>
+                                </ResponsiveContainer>
+                            </Link>
+                        </div>
+                        <div className="test right">
+                            {
+                                !loaded && (
+                                    <Skeleton variant="rectangular" width='100%' height='100%' animation="wave" />
+                                )
+                            }
+                            <Spline
+                                onLoad={() => setLoaded(true)}
+                                scene="https://prod.spline.design/vZRSIb8UwLt9SNCz/scene.splinecode" 
+                            />
+                        </div>
+                    </div>
+                </div>
 
                 <div className="test overview-section">
                     <h3 className="test section-header">Overview</h3>

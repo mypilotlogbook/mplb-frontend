@@ -50,7 +50,39 @@
         }
 
         .analytics-section {
+            cursor: pointer;
 
+            .chart-container {
+                width: 100%;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+
+                .left {
+                    margin-top: 40px;
+                    margin-right: 20px;
+                }
+            }
+
+            .section-header {
+                font-family: $primary-font;
+            }
+
+            .section-subheader {
+                font-family: $primary-font;
+                color: $textfield-text-color;
+                font-weight: normal;
+                font-size: 11px;
+                margin-bottom: 15px;
+            }
+
+            .line {
+                width: 100%;
+                opacity: 0.5;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                border: 1px solid rgb(205, 205, 205);
+            }
         }
     }
 }
