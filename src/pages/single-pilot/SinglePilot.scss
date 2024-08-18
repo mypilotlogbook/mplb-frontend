@@ -48,7 +48,9 @@
                 width: 200px;
                 height: 200px;
                 border-radius: 50%;
-                // background-color: green;
+                display: flex;
+                align-items: center;
+                justify-content: center;
 
                 .profile-image {
                     width: 200px;
@@ -59,7 +61,18 @@
                     object-fit: cover;
                     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1), 
                         15px 15px 30px rgba(0, 0, 0, 0.1);
-                    // background-color: blue;
+                    padding: 5px;
+                }
+
+                .default-profile-image {
+                    width: 200px;
+                    height: 200px;
+                    border-radius: 50%;
+                    border: 1px solid rgb(219, 219, 219);
+                    cursor: pointer;
+                    object-fit: cover;
+                    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1), 
+                        15px 15px 30px rgba(0, 0, 0, 0.1);
                 }
             }
         }
