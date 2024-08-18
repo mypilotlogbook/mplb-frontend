@@ -26,30 +26,36 @@ const SideNavigation = () => {
         },
         {
             id: 2,
+            name: 'Analytics',
+            route: '/dashboard/analytics',
+            iconName: 'https://res.cloudinary.com/dv9ax00l4/image/upload/v1722709010/house-chimney_xg1gnt.png'
+        },
+        {
+            id: 3,
             name: 'Airfields',
             route: '/dashboard/airfields',
             iconName: 'https://res.cloudinary.com/dv9ax00l4/image/upload/v1722720943/court-sport_iigi2k.png'
         },
         {
-            id: 3,
+            id: 4,
             name: 'Aircrafts',
             route: '/dashboard/aircrafts',
             iconName: 'https://res.cloudinary.com/dv9ax00l4/image/upload/v1722720942/plane-tail_sjd7cr.png'
         },
         {
-            id: 4,
+            id: 5,
             name: 'Profile',
             route: '/dashboard/profile',
             iconName: 'https://res.cloudinary.com/dv9ax00l4/image/upload/v1722721063/clipboard-user_to770d.png'
         },
         {
-            id: 5,
+            id: 6,
             name: 'Pilots',
             route: '/dashboard/pilots',
             iconName: 'https://res.cloudinary.com/dv9ax00l4/image/upload/v1722720942/user-pilot-tie_vwcvsd.png'
         },
         {
-            id: 6,
+            id: 7,
             name: 'Flights',
             route: '/dashboard/flights',
             iconName: 'https://res.cloudinary.com/dv9ax00l4/image/upload/v1722720946/plane-alt_fabie8.png'

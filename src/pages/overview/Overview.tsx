@@ -18,6 +18,8 @@ import {
 } from 'recharts';
 import Spline from '@splinetool/react-spline';
 import { Skeleton } from '@mui/material';
+import getAirFields from '../../api/airfield-endpoints/fetchAirfields';
+import getAircraftsByUserId from '../../api/aircraft-endpoints/getAircraftsByUserId';
 
 type ChartData = {
     name: string;
@@ -31,8 +33,6 @@ const Overview = () => {
         { name: 'Feb', value: 300 },
         { name: 'Mar', value: 200 },
         { name: 'Apr', value: 278 },
-        { name: 'May', value: 189 },
-        { name: 'May', value: 189 },
         { name: 'May', value: 189 },
     ];
 
@@ -52,6 +52,13 @@ const Overview = () => {
         getPilotsByUserId({
             userId: id,
             setPilots: setPilots,
+        });
+        getAirFields({
+            setAirfields: setAirfields
+        });
+        getAircraftsByUserId({
+            userId: id,
+            setAircrafts: setAircrafts
         });
     }
 
@@ -77,7 +84,7 @@ const Overview = () => {
                                         <CartesianGrid strokeDasharray="3 3" />
                                         <XAxis dataKey="name" />
                                         <YAxis />
-                                        <Tooltip />
+                                        <Tooltip /> 
                                         <Legend />
                                         <Line type="monotone" dataKey="value" stroke="#8884d8" />
                                     </LineChart>

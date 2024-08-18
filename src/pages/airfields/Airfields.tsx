@@ -5,6 +5,7 @@ import axios from 'axios';
 import { baseURL } from '../../api/baseURL';
 import Airfield from '../../components/airfield/Airfield';
 import { AirfieldProps } from '../../typescript/interfaces/interface';
+import getAirFields from '../../api/airfield-endpoints/fetchAirfields';
 
 const Airfields = () => {
 
@@ -14,14 +15,10 @@ const Airfields = () => {
   const [selectedCountry, setSelectedCountry] = useState<string>('');
 
   const fetchAirfields = async () => {
-    try {
-      const res = await axios.get(`${baseURL}/airfield`);
-      console.log(res.data.data);
-      setAirfields(res.data.data);
-      setFilteredAirfields(res.data.data);  // Set filteredAirfields initially to all airfields
-    } catch (error: any) {
-      console.log(error.message);
-    }
+    getAirFields({
+      setAirfields: setAirfields,
+      setFilteredAirfields: setFilteredAirfields
+    });
   };
 
   useEffect(() => {

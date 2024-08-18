@@ -4,7 +4,7 @@ import { getAircraftsByUserIdProps } from "../../typescript/types/type";
 
 const getAircraftsByUserId = async (props: getAircraftsByUserIdProps) => {
     try {
-        axios.get(`${baseURL}/aircraft/getByUserId/${props.userId}`)
+        await axios.get(`${baseURL}/aircraft/getByUserId/${props.userId}`)
             .then( (res) => {
                 console.log(res.data.data);
                 props.setAircrafts(res.data.data);
