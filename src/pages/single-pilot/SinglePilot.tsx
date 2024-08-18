@@ -1,13 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './SinglePilot.scss';
 import { PilotProps, UpdatePilot } from '../../typescript/interfaces/interface';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import BackButton from '../../components/back-button/BackButton';
 import { Tooltip } from '@mui/material';
 import { IdContext } from '../../context/UserIdContext';
 import Lable from '../../components/lable/Lable';
 import DashboardTextfield from '../../components/dashboard-textfield/DashboardTextfield';
 import getPilotById from '../../api/pilot-endpoints/getPilot';
+import deletePilot from '../../api/pilot-endpoints/deletePilot';
+import Alert from '../../components/alert/Alert';
 
 const SinglePilot = () => {
 
@@ -17,6 +19,8 @@ const SinglePilot = () => {
   const [success, setSuccess] = useState(false);
   const [statusCode, setStatusCode] = useState(0);
   const [message, setMessage] = useState('');
+
+  const navigate = useNavigate();
 
   const { pilotId } = useParams();
 
@@ -31,7 +35,19 @@ const SinglePilot = () => {
   }
 
   const handleDelete = () => {
-
+    //disbale ESLint restrictions
+    // eslint-disable-next-line no-restricted-globals
+    const isConfirmed = confirm('Are you sure want to delete this pilot record?');
+    if (isConfirmed) {
+      deletePilot({
+        pilotId: pilotId || null,
+        setStatusCode: setStatusCode,
+        setSuccess: setSuccess,
+        setError: setError,
+        setMessage: setMessage,
+        navigate: navigate,
+      });
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,6 +71,21 @@ const SinglePilot = () => {
 
   return (
     <div className='single-pilot test'>
+
+      {
+        error && <Alert 
+          type='error'
+          statusCode={statusCode}
+          message={message}
+        />
+      }
+      {
+        success && <Alert 
+          type='success'
+          statusCode={statusCode}
+          message={message}
+        />
+      }
 
       <div className="test single-pilot-header">
         <Link to='/dashboard/pilots'>
