@@ -10,6 +10,7 @@ import DashboardTextfield from '../../components/dashboard-textfield/DashboardTe
 import getPilotById from '../../api/pilot-endpoints/getPilot';
 import deletePilot from '../../api/pilot-endpoints/deletePilot';
 import Alert from '../../components/alert/Alert';
+import updatePilot from '../../api/pilot-endpoints/updatePilot';
 
 const SinglePilot = () => {
 
@@ -31,7 +32,17 @@ const SinglePilot = () => {
   } 
 
   const handleUpdate = () => {
-
+    updatePilot({
+      pilotId: pilotId || null,
+      setStatusCode: setStatusCode,
+      setSuccess: setSuccess,
+      setError: setError,
+      setMessage: setMessage,
+      navigate: navigate,
+      formData: formData,
+      getPilotById: getSinglePilot,
+      setPilot: setPilot
+    });
   }
 
   const handleDelete = () => {
@@ -97,7 +108,13 @@ const SinglePilot = () => {
       <div className="test single-pilot-content">
         <div className="profile-img-section test">
           <div className="test profile-pic-container">
-            <img src={pilot?.image ? pilot?.image : 'https://res.cloudinary.com/dv9ax00l4/image/upload/v1723890106/user-profile-img-removebg-preview_rlafow.png' } alt="profile-image" className="test profile-image" />
+            {
+              pilot?.image ? (
+                <img src={pilot?.image ? pilot?.image : 'https://res.cloudinary.com/dv9ax00l4/image/upload/v1723890106/user-profile-img-removebg-preview_rlafow.png' } alt="profile-image" className="test profile-image" />
+              ) : (
+                <img src='https://res.cloudinary.com/dv9ax00l4/image/upload/v1723890106/user-profile-img-removebg-preview_rlafow.png' alt="profile-image" className="test default-profile-image" />
+              )
+            }
           </div>
         </div>
 
@@ -147,7 +164,7 @@ const SinglePilot = () => {
               />
               <DashboardTextfield 
                 type='text'
-                name='image'
+                name='mobile'
                 value={formData?.mobile || ''}
                 placeholder='Give pilot mobile number'
                 onChange={handleChange}
@@ -224,6 +241,18 @@ const SinglePilot = () => {
                 name='position'
                 value={formData?.position || ''}
                 placeholder='Enter your position'
+                onChange={handleChange}
+              />
+            </div>
+            <div className="test input">
+              <Lable
+                title='Avatar'
+              />
+              <DashboardTextfield
+                type='text'
+                name='image'
+                value={formData?.image || ''}
+                placeholder='Enter pilot image url link'
                 onChange={handleChange}
               />
             </div>

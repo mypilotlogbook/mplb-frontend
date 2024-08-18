@@ -184,3 +184,16 @@ export type DeletePilotProps = {
     setMessage: Dispatch<SetStateAction<string>>,
     navigate: NavigateFunction,
 }
+
+export type UpdatePilotProps = {
+    pilotId: string | null,
+    setError?: Dispatch<SetStateAction<boolean>>,
+    setSuccess?: Dispatch<SetStateAction<boolean>>,
+    setStatusCode?: Dispatch<SetStateAction<number>>,
+    setMessage?: Dispatch<SetStateAction<string>>,
+    navigate?: NavigateFunction,
+    setFormData?: Dispatch<SetStateAction<UpdatePilot | undefined>>,
+    formData: UpdateUser | undefined,
+    getPilotById?: (props: getPilotPropsById) => void,
+    setPilot?: Dispatch<SetStateAction<PilotProps | undefined>>,
+}
