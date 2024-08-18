@@ -1,6 +1,6 @@
 import { Dispatch, ReactNode, SetStateAction } from "react"
 import { NavigateFunction } from "react-router-dom"
-import { AircraftProps, PilotProps, UpdatePilot, UpdateUser, User } from "../interfaces/interface"
+import { AircraftProps, AirfieldProps, PilotProps, UpdatePilot, UpdateUser, User } from "../interfaces/interface"
 
 export type AuthHeaderProps = {
     title: string
@@ -203,4 +203,9 @@ export type OverviewCardProps = {
     title?: string,
     description?: string,
     count?: number,
+}
+
+export type getAirFieldsProps = {
+    setAirfields?: Dispatch<SetStateAction<AirfieldProps[]>>,
+    setFilteredAirfields?: Dispatch<SetStateAction<AirfieldProps[]>>,
 }
