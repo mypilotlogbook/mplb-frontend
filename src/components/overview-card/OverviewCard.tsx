@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './OverviewCard.scss';
 import { OverviewCardProps } from '../../typescript/types/type';
 
 const OverviewCard = (props: OverviewCardProps) => {
+
+  const [loaded, setLoaded] = useState(false);
 
   return (
     <div className='test overview-card'>
