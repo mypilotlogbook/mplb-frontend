@@ -219,3 +219,19 @@ export type AddPilotProps = {
     resetCredentials?: () => void,
     pilot: PilotProps,
 }
+
+export type AddAircraftProps = {
+    userId: string | null,
+    setError?: Dispatch<SetStateAction<boolean>>,
+    setSuccess?: Dispatch<SetStateAction<boolean>>,
+    setStatusCode?: Dispatch<SetStateAction<number>>,
+    setMessage?: Dispatch<SetStateAction<string>>,
+    resetCredentials?: () => void,
+    aircraft: AircraftProps,
+}
+
+export type CheckboxProp = {
+    id: number,
+    name: string,
+    value: string,
+}

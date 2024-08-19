@@ -90,6 +90,7 @@ export interface AircraftProps {
     actual_instrument?: boolean,
     sim_instrument?: boolean,
     default_operation?: string,
+    default_approach?: string,
     default_launch?: string,
     auto_load_hours?: string,
     userId?: string,
