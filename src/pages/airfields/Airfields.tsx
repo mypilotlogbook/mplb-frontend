@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Airfields.scss';
 import PageHeader from '../../components/page-header/PageHeader';
-import axios from 'axios';
-import { baseURL } from '../../api/baseURL';
 import Airfield from '../../components/airfield/Airfield';
 import { AirfieldProps } from '../../typescript/interfaces/interface';
 import getAirFields from '../../api/airfield-endpoints/fetchAirfields';
