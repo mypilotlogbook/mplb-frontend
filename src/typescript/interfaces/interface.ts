@@ -64,6 +64,7 @@ export interface AircraftProps {
     _id?: string,
     type?: string,
     image?: string,
+    company?: string,
     fin?: string,
     registration_no?: string,
     model?: string,
