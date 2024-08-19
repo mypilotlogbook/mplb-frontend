@@ -209,3 +209,13 @@ export type getAirFieldsProps = {
     setAirfields?: Dispatch<SetStateAction<AirfieldProps[]>>,
     setFilteredAirfields?: Dispatch<SetStateAction<AirfieldProps[]>>,
 }
+
+export type AddPilotProps = {
+    userId: string | null,
+    setError?: Dispatch<SetStateAction<boolean>>,
+    setSuccess?: Dispatch<SetStateAction<boolean>>,
+    setStatusCode?: Dispatch<SetStateAction<number>>,
+    setMessage?: Dispatch<SetStateAction<string>>,
+    resetCredentials?: () => void,
+    pilot: PilotProps,
+}
