@@ -68,7 +68,7 @@ export interface AircraftProps {
     fin?: string,
     registration_no?: string,
     model?: string,
-    varient?: string,
+    variant?: string,
     manufacturer?: string,
     type_rating?: string,
     passenger?: string,
@@ -97,6 +97,40 @@ export interface AircraftProps {
     __v?: number,
     createdAt?: string;
     updatedAt?: string;
+}
+
+export interface UpdateAircraft {
+    type?: string,
+    image?: string,
+    company?: string,
+    fin?: string,
+    registration_no?: string,
+    model?: string,
+    variant?: string,
+    manufacturer?: string,
+    type_rating?: string,
+    passenger?: string,
+    aircraft_class?: string,
+    sub_class?: string,
+    category?: string,
+    power?: string,
+    device?: string,
+    aerobatic?: boolean,
+    complex?: boolean,
+    tm_glider?: boolean,
+    tailwheel?: boolean,
+    high_performance?: boolean,
+    efis?: boolean,
+    more_than_weight?: boolean,
+    cross_country?: boolean,
+    relief_pilot?: boolean,
+    ifr?: boolean,
+    actual_instrument?: boolean,
+    sim_instrument?: boolean,
+    default_operation?: string,
+    default_approach?: string,
+    default_launch?: string,
+    auto_load_hours?: string,
 }
 
 export interface PilotProps {
