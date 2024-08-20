@@ -1,6 +1,6 @@
 import { Dispatch, ReactNode, SetStateAction } from "react"
 import { NavigateFunction } from "react-router-dom"
-import { AircraftProps, AirfieldProps, PilotProps, UpdatePilot, UpdateUser, User } from "../interfaces/interface"
+import { AircraftProps, AirfieldProps, PilotProps, UpdateAircraft, UpdatePilot, UpdateUser, User } from "../interfaces/interface"
 
 export type AuthHeaderProps = {
     title: string
@@ -234,4 +234,31 @@ export type CheckboxProp = {
     id: number,
     name: string,
     value: string,
+}
+
+export type DeleteAircraftProps = {
+    aircraftId: string | null,
+    setError?: Dispatch<SetStateAction<boolean>>,
+    setSuccess?: Dispatch<SetStateAction<boolean>>,
+    setStatusCode?: Dispatch<SetStateAction<number>>,
+    setMessage?: Dispatch<SetStateAction<string>>,
+    navigate?: NavigateFunction,
+}
+
+export type UpdateAircraftProps = {
+    aircraftId: string | null,
+    formData: UpdateAircraft | undefined,
+    setError?: Dispatch<SetStateAction<boolean>>,
+    setSuccess?: Dispatch<SetStateAction<boolean>>,
+    setStatusCode?: Dispatch<SetStateAction<number>>,
+    setMessage?: Dispatch<SetStateAction<string>>,
+    setAircraft?: Dispatch<SetStateAction<AircraftProps | undefined>>,
+    setFormData?: Dispatch<SetStateAction<UpdateAircraft | undefined>>,
+    getAircraft: (props: GetAircraftProps) => void,
+}
+
+export type GetAircraftProps = {
+    aircraftId: string | null,
+    setAircraft?: Dispatch<SetStateAction<AircraftProps | undefined>>,
+    setFormData?: Dispatch<SetStateAction<UpdateAircraft | undefined>>,
 }

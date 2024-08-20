@@ -28,7 +28,7 @@ const AddAircraft = () => {
     registration_no: "",
     fin: "",
     model: "",
-    varient: "",
+    variant: "",
     manufacturer: "",
     type_rating: "",
     passenger: "",
@@ -72,7 +72,7 @@ const AddAircraft = () => {
       registration_no: "",
       fin: "",
       model: "",
-      varient: "",
+      variant: "",
       manufacturer: "",
       type_rating: "",
       passenger: "",
@@ -228,8 +228,8 @@ const AddAircraft = () => {
             <Lable title="Varient" />
             <DashboardTextfield
               type="text"
-              name="varient"
-              value={aircraft?.varient || ""}
+              name="variant"
+              value={aircraft?.variant || ""}
               placeholder="Enter aircraft varient"
               onChange={handleChange}
             />
