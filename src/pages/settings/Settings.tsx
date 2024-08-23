@@ -1,6 +1,9 @@
 import React from 'react';
 import './Settings.scss';
 import PageHeader from '../../components/page-header/PageHeader';
+import DashboardTextfield from '../../components/dashboard-textfield/DashboardTextfield';
+import Lable from '../../components/lable/Lable';
+import { Tooltip } from '@mui/material';
 
 const Settings = () => {
 
@@ -10,6 +13,125 @@ const Settings = () => {
                 title='Settings'
                 subTitle='Customize the system as your wish.'
             />
+
+            <div className="test settings-content">
+
+                {/* forgot password section */}
+                <div className="test settings-section">
+                    <h3 className="test section-header">Change Password</h3>
+                    <h5 className="test section-subheader">Set a new password for your account</h5>
+                    <hr className="test line" />
+                    <div className="test settings-content-section">
+                        <h4 className="test email">jeral.sandeeptha1@gmail.com</h4>
+                        <div className="test textfields">
+                            <div className="test input">
+                                <Lable
+                                    title='New Password'
+                                />
+                                <DashboardTextfield
+                                    type='text'
+                                    name='confirm_password'
+                                    value=''
+                                    placeholder='Enter your new password'
+                                    onChange={()=>{}}
+                                />
+                            </div>
+                            <div className="test input">
+                                <Lable
+                                    title='Confirm Password'
+                                />
+                                <DashboardTextfield
+                                    type='text'
+                                    name='password'
+                                    value=''
+                                    placeholder='Enter your confirm password'
+                                    onChange={()=>{}}
+                                />
+                            </div>
+                        </div>
+                        <Tooltip title="Click here to Change Password" arrow>
+                            <button className='test change-button'>Change Password</button>
+                        </Tooltip>
+                    </div>
+                </div>
+
+                <hr className='test hard-line'/>
+
+                {/* reset pilot data section */}
+                <div className="test settings-section">
+                    <h3 className="test section-header">Reset Pilots Data</h3>
+                    <h5 className="test section-subheader">Reset your pilots all the data</h5>
+                    <hr className="test line" />
+                    <div className="test settings-content-section">
+                        <h4 className="test email">Warning. You can only reset your pilots data. This is cause to loose your all the pilot data it's analytics and charts.</h4>
+                        <Tooltip title="Click here to Reset Pilot Data" arrow>
+                            <button className='test change-button'>Reset Data</button>
+                        </Tooltip>
+                    </div>
+                </div>
+                
+                <hr className='test hard-line'/>
+                
+                {/* reset flight data section */}
+                <div className="test settings-section">
+                    <h3 className="test section-header">Reset Flight Data</h3>
+                    <h5 className="test section-subheader">Reset your flights all the data</h5>
+                    <hr className="test line" />
+                    <div className="test settings-content-section">
+                        <h4 className="test email">Warning. You can only reset your flights data. This is cause to loose your all the flights data it's analytics and charts.</h4>
+                        <Tooltip title="Click here to Reset Pilot Data" arrow>
+                            <button className='test change-button'>Reset Data</button>
+                        </Tooltip>
+                    </div>
+                </div>
+                
+                <hr className='test hard-line'/>
+                
+                {/* reset aircrafts data section */}
+                <div className="test settings-section">
+                    <h3 className="test section-header">Reset Aircraft Data</h3>
+                    <h5 className="test section-subheader">Reset your aircraft all the data</h5>
+                    <hr className="test line" />
+                    <div className="test settings-content-section">
+                        <h4 className="test email">Warning. You can only reset your aircraft data. This is cause to loose your all the aircraft data it's analytics and charts.</h4>
+                        <Tooltip title="Click here to Reset Aircraft Data" arrow>
+                            <button className='test change-button'>Reset Data</button>
+                        </Tooltip>
+                    </div>
+                </div>
+                
+                <hr className='test hard-line'/>
+
+                {/* reset data section */}
+                <div className="test settings-section">
+                    <h3 className="test section-header">Reset Account</h3>
+                    <h5 className="test section-subheader">Reset your account</h5>
+                    <hr className="test line" />
+                    <div className="test settings-content-section">
+                        <h4 className="test email">Warning. You can reset your whole account data. This is cause to loose your all data including Pilots, Flights, Aircrafts and all the analytics and charts.</h4>
+                        <Tooltip title="Click here to Reset Data" arrow>
+                            <button className='test change-button'>Reset Data</button>
+                        </Tooltip>
+                    </div>
+                </div>
+
+                <hr className='test hard-line'/>
+                
+                {/* delete account section */}
+                <div className="test settings-section">
+                    <h3 className="test section-header">Delete Account</h3>
+                    <h5 className="test section-subheader">Delete your account</h5>
+                    <hr className="test line" />
+                    <div className="test settings-content-section">
+                        <h4 className="test email">Warning. You can delete and deactivate your account. If you delete your account it's cause to loose your all data including Pilots, Flights, Aircrafts and all the analytics and charts. You can't no longer access to your account.</h4>
+                        <Tooltip title="Delete Account" arrow>
+                            <button className='test change-button'>Delete Account</button>
+                        </Tooltip>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
     );
 }
