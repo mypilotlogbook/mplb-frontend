@@ -5,4 +5,85 @@
 .settings {
     width: 100%;
     min-height: 100vh;
+
+    .settings-content {
+        width: 100%;
+        min-height: calc(100vh - 80px);
+        max-height: calc(100vh - 80px);
+        overflow-y: scroll;
+        padding: 30px 30px 0 30px;
+        position: relative;
+        padding-bottom: 20px;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hard-line {
+            width: 100%;
+            opacity: 0.5;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            height: 2px;
+            border: none;
+            outline: none;
+            background-color: $black;
+        }
+
+        .settings-section {
+
+            .section-header {
+                font-family: $primary-font;
+            }
+
+            .section-subheader {
+                font-family: $primary-font;
+                color: $textfield-text-color;
+                font-weight: normal;
+                font-size: 11px;
+                margin-bottom: 15px;
+            }
+
+            .line {
+                width: 100%;
+                opacity: 0.5;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                border: 1px solid rgb(205, 205, 205);
+            }
+
+            .settings-content-section {
+
+                .email {
+                    font-family: $primary-font;
+                    font-weight: normal;
+                    font-size: 15px;
+                    color: $black;
+                    margin-bottom: 20px;
+                }
+
+                .textfields {
+                    display: grid;
+                    width: 100%;
+                    gap: 20px 30px;
+                    grid-template-columns: repeat(2, 1fr);
+                }
+
+                .change-button {
+                    color: $white;
+                    background-color: $black;
+                    font-family: $primary-font;
+                    outline: none;
+                    border: none;
+                    border-radius: 0.25rem;
+                    cursor: pointer;
+                    padding: 10px 20px;
+                    margin-top: 15px;
+                    font-size: 12px;
+                    width: 150px;
+                    height: 40px;
+                }
+            }
+        }
+    }    
 }
