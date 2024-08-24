@@ -292,6 +292,10 @@ export type Credentials = {
     confirmPassword: string
 }
 
+export type NoDataProps = {
+    message: string,
+}
+
 export type QuickChangePasswordProps = {
     userId: string | null,
     email: string,       

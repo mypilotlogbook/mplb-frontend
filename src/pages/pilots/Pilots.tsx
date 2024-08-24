@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Pilot from '../../components/pilot/Pilot';
 import { IdContext } from '../../context/UserIdContext';
 import getPilotsByUserId from '../../api/pilot-endpoints/getPilotsByUserId';
+import NoData from '../../components/no-data/NoData';
 
 const Pilots = () => {
 
@@ -87,6 +88,7 @@ const Pilots = () => {
                 </div>
                 <div className="test table-body">
                     {
+                        filteredPilots.length === 0 ? <NoData message='No pilots data available'/> :
                         filteredPilots.map((pilot, index) => {
                         return (
                             <Pilot 
