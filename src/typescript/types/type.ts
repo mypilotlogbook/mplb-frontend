@@ -262,3 +262,27 @@ export type GetAircraftProps = {
     setAircraft?: Dispatch<SetStateAction<AircraftProps | undefined>>,
     setFormData?: Dispatch<SetStateAction<UpdateAircraft | undefined>>,
 }
+
+export type DeletePilotsByUserIdProps = {
+    userId: string | null,
+    setError?: Dispatch<SetStateAction<boolean>>,
+    setSuccess?: Dispatch<SetStateAction<boolean>>,
+    setStatusCode?: Dispatch<SetStateAction<number>>,
+    setMessage?: Dispatch<SetStateAction<string>>,
+}
+
+export type DeleteAircraftsByUserIdProps = {
+    userId: string | null,
+    setError?: Dispatch<SetStateAction<boolean>>,
+    setSuccess?: Dispatch<SetStateAction<boolean>>,
+    setStatusCode?: Dispatch<SetStateAction<number>>,
+    setMessage?: Dispatch<SetStateAction<string>>,
+}
+
+export type DeleteFlightsByUserIdProps = {
+    userId: string | null,
+    setError?: Dispatch<SetStateAction<boolean>>,
+    setSuccess?: Dispatch<SetStateAction<boolean>>,
+    setStatusCode?: Dispatch<SetStateAction<number>>,
+    setMessage?: Dispatch<SetStateAction<string>>,
+}
