@@ -19,6 +19,51 @@
             display: none;
         }
 
+        .hard-line {
+            width: 100%;
+            opacity: 0.5;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            height: 2px;
+            border: none;
+            outline: none;
+            background-color: gray;
+        }
+
+        .logout-section {
+            width: 100%;
+            min-height: 10vh;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+
+            .logout-container {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 20px;
+                background-color: $black;
+                outline: none;
+                border: none;
+                border-radius: 0.25rem;
+                padding: 10px 30px;
+                width: 50%;
+
+                .logout-logo {
+                    width: 20px;
+                    height: 20px;
+                }
+
+                .btn-text {
+                    color: $white;
+                    font-size: 13px;
+                    font-weight: normal;
+                    font-family: $primary-font;   
+                }
+            }
+        }
+
         .banner {
             width: 100%;
             max-height: 100px;
