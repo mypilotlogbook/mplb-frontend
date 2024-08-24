@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Settings.scss';
 import PageHeader from '../../components/page-header/PageHeader';
 import DashboardTextfield from '../../components/dashboard-textfield/DashboardTextfield';
@@ -8,19 +8,35 @@ import Alert from '../../components/alert/Alert';
 import deletePilotsByUserId from '../../api/pilot-endpoints/deletePilotsByUserId';
 import { IdContext } from '../../context/UserIdContext';
 import deleteAircraftsByUserId from '../../api/aircraft-endpoints/deleteAircraftsByUserId';
+import { Credentials } from '../../typescript/types/type';
+import quickChangePassword from '../../api/user-endpoints/quickChangePassword';
+import { User } from '../../typescript/interfaces/interface';
+import getUserEmail from '../../api/user-endpoints/getUserEmail';
 
 const Settings = () => {
 
+    const [email, setEmail] = useState<string>('');
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
     const [statusCode, setStatusCode] = useState(0);
     const [message, setMessage] = useState('');
+    const [credentials, setCredentials] = useState<Credentials>({
+        password: '',
+        confirmPassword: '',
+    });
 
     const idContext = useContext(IdContext);
     if(!idContext) {
         throw new Error('IdContext not found');
     }
     const { id } = idContext;
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setCredentials((prevData) => ({
+          ...prevData,
+          [e.target.name]: e.target.value,
+        }));
+    };
 
     const handleDeletePilotData = () => {
         const isConfirmed = window.confirm('Are you sure you want to reset your pilots data? This will lose all your pilots data.');
@@ -44,6 +60,40 @@ const Settings = () => {
                 setStatusCode: setStatusCode,
                 setMessage: setMessage,
                 setError: setError
+            });
+        }
+    }
+
+    const resetCredentials = () => {
+        setCredentials({
+            password: '',
+            confirmPassword: '',
+        });
+    }
+
+    const getUserInfo = () => {
+        getUserEmail({
+            id: id,
+            setEmail: setEmail
+        });
+    }
+
+    useEffect(() => {
+        getUserInfo();
+    }, []);
+
+    const handleChangePassword = () => {
+        const isConfirmed = window.confirm('Are you sure you want to reset your password?');
+        if (isConfirmed) {
+            quickChangePassword({
+                userId: id,
+                email: email,
+                credentaials: credentials,
+                setSuccess: setSuccess,
+                setStatusCode: setStatusCode,
+                setMessage: setMessage,
+                setError: setError,
+                resetCredentials: resetCredentials
             });
         }
     }
@@ -78,7 +128,7 @@ const Settings = () => {
                     <h5 className="test section-subheader">Set a new password for your account</h5>
                     <hr className="test line" />
                     <div className="test settings-content-section">
-                        <h4 className="test email">jeral.sandeeptha1@gmail.com</h4>
+                        <h4 className="test email">{email}</h4>
                         <div className="test textfields">
                             <div className="test input">
                                 <Lable
@@ -86,10 +136,10 @@ const Settings = () => {
                                 />
                                 <DashboardTextfield
                                     type='text'
-                                    name='confirm_password'
-                                    value=''
+                                    name='password'
+                                    value={credentials.password || ''}
                                     placeholder='Enter your new password'
-                                    onChange={()=>{}}
+                                    onChange={handleChange}
                                 />
                             </div>
                             <div className="test input">
@@ -98,15 +148,15 @@ const Settings = () => {
                                 />
                                 <DashboardTextfield
                                     type='text'
-                                    name='password'
-                                    value=''
+                                    name='confirmPassword'
+                                    value={credentials.confirmPassword || ''}
                                     placeholder='Enter your confirm password'
-                                    onChange={()=>{}}
+                                    onChange={handleChange}
                                 />
                             </div>
                         </div>
                         <Tooltip title="Click here to Change Password" arrow>
-                            <button className='test change-button'>Change Password</button>
+                            <button onClick={handleChangePassword} className='test change-button'>Change Password</button>
                         </Tooltip>
                     </div>
                 </div>

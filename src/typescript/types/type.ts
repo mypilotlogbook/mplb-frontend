@@ -286,3 +286,19 @@ export type DeleteFlightsByUserIdProps = {
     setStatusCode?: Dispatch<SetStateAction<number>>,
     setMessage?: Dispatch<SetStateAction<string>>,
 }
+
+export type Credentials = {
+    password: string,
+    confirmPassword: string
+}
+
+export type QuickChangePasswordProps = {
+    userId: string | null,
+    email: string,       
+    credentaials: Credentials,
+    setError: Dispatch<SetStateAction<boolean>>,
+    setSuccess: Dispatch<SetStateAction<boolean>>,
+    setStatusCode: Dispatch<SetStateAction<number>>,
+    setMessage: Dispatch<SetStateAction<string>>,
+    resetCredentials: () => void,
+}
