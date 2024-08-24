@@ -1,11 +1,41 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import './Settings.scss';
 import PageHeader from '../../components/page-header/PageHeader';
 import DashboardTextfield from '../../components/dashboard-textfield/DashboardTextfield';
 import Lable from '../../components/lable/Lable';
 import { Tooltip } from '@mui/material';
+import Alert from '../../components/alert/Alert';
+import deletePilotsByUserId from '../../api/pilot-endpoints/deletePilotsByUserId';
+import { IdContext } from '../../context/UserIdContext';
 
 const Settings = () => {
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [statusCode, setStatusCode] = useState(0);
+    const [message, setMessage] = useState('');
+
+    const idContext = useContext(IdContext);
+    if(!idContext) {
+        throw new Error('IdContext not found');
+    }
+    const { id } = idContext;
+
+    const handleDeletePilotData = () => {
+        const isConfirmed = window.confirm('Are you sure you want to reset your pilot data? This will lose all your pilots data.');
+        if (isConfirmed) {
+            deletePilotsByUserId({
+                userId: id,
+                setSuccess: setSuccess,
+                setStatusCode: setStatusCode,
+                setMessage: setMessage,
+                setError: setError
+            });
+        }
+    }
 
     return (
         <div className='settings test'>
@@ -13,6 +43,21 @@ const Settings = () => {
                 title='Settings'
                 subTitle='Customize the system as your wish.'
             />
+
+            {
+              error && <Alert
+                statusCode={statusCode}
+                message={message}
+                type='error'
+              />
+            }
+            {
+              success && <Alert
+                statusCode={statusCode}
+                message={message}
+                type='success'
+              />
+            }
 
             <div className="test settings-content">
 
@@ -65,7 +110,7 @@ const Settings = () => {
                     <div className="test settings-content-section">
                         <h4 className="test email">Warning. You can only reset your pilots data. This is cause to loose your all the pilot data it's analytics and charts.</h4>
                         <Tooltip title="Click here to Reset Pilot Data" arrow>
-                            <button className='test change-button'>Reset Data</button>
+                            <button className='test change-button' onClick={handleDeletePilotData}>Reset Data</button>
                         </Tooltip>
                     </div>
                 </div>
