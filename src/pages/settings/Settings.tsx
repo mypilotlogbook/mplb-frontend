@@ -7,12 +7,10 @@ import { Tooltip } from '@mui/material';
 import Alert from '../../components/alert/Alert';
 import deletePilotsByUserId from '../../api/pilot-endpoints/deletePilotsByUserId';
 import { IdContext } from '../../context/UserIdContext';
+import deleteAircraftsByUserId from '../../api/aircraft-endpoints/deleteAircraftsByUserId';
 
 const Settings = () => {
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
     const [statusCode, setStatusCode] = useState(0);
@@ -25,9 +23,22 @@ const Settings = () => {
     const { id } = idContext;
 
     const handleDeletePilotData = () => {
-        const isConfirmed = window.confirm('Are you sure you want to reset your pilot data? This will lose all your pilots data.');
+        const isConfirmed = window.confirm('Are you sure you want to reset your pilots data? This will lose all your pilots data.');
         if (isConfirmed) {
             deletePilotsByUserId({
+                userId: id,
+                setSuccess: setSuccess,
+                setStatusCode: setStatusCode,
+                setMessage: setMessage,
+                setError: setError
+            });
+        }
+    }
+
+    const handleDeleteAircraftData = () => {
+        const isConfirmed = window.confirm('Are you sure you want to reset your aircrafts data? This will lose all your aircrafts data.');
+        if (isConfirmed) {
+            deleteAircraftsByUserId({
                 userId: id,
                 setSuccess: setSuccess,
                 setStatusCode: setStatusCode,
@@ -140,7 +151,7 @@ const Settings = () => {
                     <div className="test settings-content-section">
                         <h4 className="test email">Warning. You can only reset your aircraft data. This is cause to loose your all the aircraft data it's analytics and charts.</h4>
                         <Tooltip title="Click here to Reset Aircraft Data" arrow>
-                            <button className='test change-button'>Reset Data</button>
+                            <button className='test change-button' onClick={handleDeleteAircraftData}>Reset Data</button>
                         </Tooltip>
                     </div>
                 </div>
