@@ -10,6 +10,8 @@ import { IdContext } from '../../context/UserIdContext';
 import DashboardTextfield from '../../components/dashboard-textfield/DashboardTextfield';
 import updateUser from '../../api/user-endpoints/updateUser';
 import Alert from '../../components/alert/Alert';
+import { TokenContext } from '../../context/TokenContext';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
 
@@ -20,11 +22,20 @@ const Profile = () => {
   const [statusCode, setStatusCode] = useState(0);
   const [message, setMessage] = useState('');
 
+  const navigate = useNavigate();
+
   const idContext = useContext(IdContext);
   const id = idContext?.id;
+  const clearId = idContext?.clearId;
   if (!id) {
     throw new Error('Id context is not available');
   } 
+
+  const tokenContext = useContext(TokenContext);
+  if (!tokenContext) {
+      throw new Error('Token context is not available');
+  }
+  const { clearToken } = tokenContext;
 
   const handleUpdateUser = () => {
     updateUser({
@@ -53,6 +64,17 @@ const Profile = () => {
       setFormData: setFormData,
       id: id
     });
+  }
+
+  const handleLogout = () => {
+    const confirmed = window.confirm("Are you sure you want to log out?");
+    if (confirmed) {
+        clearToken(); 
+        if (clearId) {
+          clearId();
+        }
+        navigate('/login');
+    }
   }
 
   useEffect(() => {
@@ -217,6 +239,17 @@ const Profile = () => {
             </div>
           </div>
         </div>
+
+        <hr className='test hard-line'/>
+
+        <div className="test logout-section">
+          <Tooltip title="Logout" arrow>
+            <button className="test logout-container" onClick={handleLogout}>
+                <h5 className="test btn-text">Logout</h5>
+            </button>
+          </Tooltip>
+        </div>
+        
       </div>
     </div>
   );
