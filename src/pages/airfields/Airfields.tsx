@@ -4,6 +4,7 @@ import PageHeader from '../../components/page-header/PageHeader';
 import Airfield from '../../components/airfield/Airfield';
 import { AirfieldProps } from '../../typescript/interfaces/interface';
 import getAirFields from '../../api/airfield-endpoints/fetchAirfields';
+import NoData from '../../components/no-data/NoData';
 
 const Airfields = () => {
 
@@ -103,6 +104,7 @@ const Airfields = () => {
         </div>
         <div className="test table-body">
           {
+            filteredAirfields.length === 0 ? <NoData message='No airfields data available'/> :
             filteredAirfields.map((airfield, index) => {
               return (
                 <Airfield

@@ -6,6 +6,7 @@ import Aircraft from '../../components/aircraft/Aircraft';
 import getAircraftsByUserId from '../../api/aircraft-endpoints/getAircraftsByUserId';
 import { IdContext } from '../../context/UserIdContext';
 import { Link } from 'react-router-dom';
+import NoData from '../../components/no-data/NoData';
 
 const Aircarfts = () => {
 
@@ -91,6 +92,7 @@ const Aircarfts = () => {
                 </div>
                 <div className="test table-body">
                     {
+                        filteredAircrafts.length === 0 ? <NoData message='No aircrafts data available'/>:
                         filteredAircrafts.map((aircraft, index) => {
                         return (
                             <Aircraft 
