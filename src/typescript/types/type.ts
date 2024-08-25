@@ -1,6 +1,6 @@
 import { Dispatch, ReactNode, SetStateAction } from "react"
 import { NavigateFunction } from "react-router-dom"
-import { AircraftProps, AirfieldProps, PilotProps, UpdateAircraft, UpdatePilot, UpdateUser, User } from "../interfaces/interface"
+import { AircraftProps, AirfieldProps, FlightProps, PilotProps, UpdateAircraft, UpdatePilot, UpdateUser, User } from "../interfaces/interface"
 
 export type AuthHeaderProps = {
     title: string
@@ -299,6 +299,11 @@ export type NoDataProps = {
 export type DeleteUserProps = {
     userId: string | null,
     navigate: NavigateFunction,
+}
+
+export type GetFlightsByUserIdProps = {
+    userId: string | null,
+    setFlights: Dispatch<SetStateAction<FlightProps[]>>,
 }
 
 export type QuickChangePasswordProps = {

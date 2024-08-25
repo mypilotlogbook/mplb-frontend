@@ -3,7 +3,7 @@ import './Overview.scss';
 import DashboardHeader from '../../components/dashboard-header/DashboardHeader';
 import OverviewCard from '../../components/overview-card/OverviewCard';
 import getPilotsByUserId from '../../api/pilot-endpoints/getPilotsByUserId';
-import { AircraftProps, AirfieldProps, PilotProps } from '../../typescript/interfaces/interface';
+import { AircraftProps, AirfieldProps, FlightProps, PilotProps } from '../../typescript/interfaces/interface';
 import { IdContext } from '../../context/UserIdContext';
 import { Link } from 'react-router-dom';
 import {
@@ -20,6 +20,7 @@ import Spline from '@splinetool/react-spline';
 import { Skeleton } from '@mui/material';
 import getAirFields from '../../api/airfield-endpoints/fetchAirfields';
 import getAircraftsByUserId from '../../api/aircraft-endpoints/getAircraftsByUserId';
+import getFlightsByUserId from '../../api/flight-endpoints/getFlightsByUserId';
 
 type ChartData = {
     name: string;
@@ -39,6 +40,7 @@ const Overview = () => {
     const [pilots, setPilots] = useState<PilotProps[]>([]);
     const [airfields, setAirfields] = useState<AirfieldProps[]>([]);
     const [aircrafts, setAircrafts] = useState<AircraftProps[]>([]);
+    const [flights, setFlights] = useState<FlightProps[]>([]);
 
     const [loaded, setLoaded] = useState(false);
 
@@ -59,6 +61,10 @@ const Overview = () => {
         getAircraftsByUserId({
             userId: id,
             setAircrafts: setAircrafts
+        });
+        getFlightsByUserId({
+            userId: id || null,
+            setFlights: setFlights
         });
     }
 
@@ -136,7 +142,7 @@ const Overview = () => {
                         </Link>
                         <Link to='/dashboard/flights'>
                             <OverviewCard 
-                                count={pilots.length}
+                                count={flights.length}
                                 description='Manage Your Flights Data'
                                 image="https://res.cloudinary.com/dv9ax00l4/image/upload/v1723986303/calender-dynamic-premium_zfxnpp.png"
                                 title="Flights"
