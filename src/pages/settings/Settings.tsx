@@ -13,6 +13,7 @@ import quickChangePassword from '../../api/user-endpoints/quickChangePassword';
 import getUserEmail from '../../api/user-endpoints/getUserEmail';
 import { useNavigate } from 'react-router-dom';
 import deleteUser from '../../api/user-endpoints/deleteUser';
+import deleteFlightsByUserId from '../../api/flight-endpoints/deleteFlightsByUserId';
 
 const Settings = () => {
 
@@ -66,6 +67,46 @@ const Settings = () => {
         }
     }
 
+    const handleDeleteFlightsData = () => {
+        const isConfirmed = window.confirm('Are you sure you want to reset your flights data? This will lose all your flights data.');
+        if (isConfirmed) {
+            deleteFlightsByUserId({
+                userId: id,
+                setSuccess: setSuccess,
+                setStatusCode: setStatusCode,
+                setMessage: setMessage,
+                setError: setError
+            });
+        }
+    }
+
+    const handleDeleteAllTheData = () => {
+        const isConfirmed = window.confirm('Are you sure you want to reset your all data? This will lose all your data.');
+        if (isConfirmed) {
+            deleteAircraftsByUserId({
+                userId: id,
+                setSuccess: setSuccess,
+                setStatusCode: setStatusCode,
+                setMessage: setMessage,
+                setError: setError
+            });
+            deletePilotsByUserId({
+                userId: id,
+                setSuccess: setSuccess,
+                setStatusCode: setStatusCode,
+                setMessage: setMessage,
+                setError: setError
+            });
+            deleteFlightsByUserId({
+                userId: id,
+                setSuccess: setSuccess,
+                setStatusCode: setStatusCode,
+                setMessage: setMessage,
+                setError: setError
+            });
+        }
+    }
+
     const resetCredentials = () => {
         setCredentials({
             password: '',
@@ -95,6 +136,13 @@ const Settings = () => {
                 setError: setError
             });
             deletePilotsByUserId({
+                userId: id,
+                setSuccess: setSuccess,
+                setStatusCode: setStatusCode,
+                setMessage: setMessage,
+                setError: setError
+            });
+            deleteFlightsByUserId({
                 userId: id,
                 setSuccess: setSuccess,
                 setStatusCode: setStatusCode,
@@ -212,7 +260,7 @@ const Settings = () => {
                     <div className="test settings-content-section">
                         <h4 className="test email">Warning. You can only reset your flights data. This is cause to loose your all the flights data it's analytics and charts.</h4>
                         <Tooltip title="Click here to Reset Pilot Data" arrow>
-                            <button className='test change-button'>Reset Data</button>
+                            <button className='test change-button' onClick={handleDeleteFlightsData}>Reset Data</button>
                         </Tooltip>
                     </div>
                 </div>
@@ -242,7 +290,7 @@ const Settings = () => {
                     <div className="test settings-content-section">
                         <h4 className="test email">Warning. You can reset your whole account data. This is cause to loose your all data including Pilots, Flights, Aircrafts and all the analytics and charts.</h4>
                         <Tooltip title="Click here to Reset Data" arrow>
-                            <button className='test change-button'>Reset Data</button>
+                            <button className='test change-button' onClick={handleDeleteAllTheData}>Reset Data</button>
                         </Tooltip>
                     </div>
                 </div>
