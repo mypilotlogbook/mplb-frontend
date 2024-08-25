@@ -2,11 +2,11 @@ import axios from 'axios';
 import { baseURL } from '../baseURL';
 import { DeleteUserProps } from '../../typescript/types/type';
 
-const deleteUser = (props: DeleteUserProps) => {
-    axios.get(`${baseURL}/user/${props.userId}`)
+const deleteUser = async (props: DeleteUserProps) => {
+    await axios.delete(`${baseURL}/user/${props.userId}`)
         .then((res) => {
             console.log(res.data.data);
-            props.navigate('/login');
+            alert('Your account has been deleted successfully. You will redirected to login page.');
         })
         .catch((error) => {
             console.log(error);

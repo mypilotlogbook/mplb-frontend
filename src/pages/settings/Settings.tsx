@@ -14,6 +14,7 @@ import getUserEmail from '../../api/user-endpoints/getUserEmail';
 import { useNavigate } from 'react-router-dom';
 import deleteUser from '../../api/user-endpoints/deleteUser';
 import deleteFlightsByUserId from '../../api/flight-endpoints/deleteFlightsByUserId';
+import { TokenContext } from '../../context/TokenContext';
 
 const Settings = () => {
 
@@ -29,10 +30,15 @@ const Settings = () => {
     const navigate = useNavigate();
 
     const idContext = useContext(IdContext);
+    const tokenContext = useContext(TokenContext);
+    if(!tokenContext) {
+        throw new Error('Token not found');
+    }
     if(!idContext) {
         throw new Error('IdContext not found');
     }
-    const { id } = idContext;
+    const { id, clearId } = idContext;
+    const { clearToken } = tokenContext;
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setCredentials((prevData) => ({
@@ -52,6 +58,14 @@ const Settings = () => {
                 setError: setError
             });
         }
+    }
+
+    const handleLogout = () => {
+        clearToken(); 
+        if (clearId) {
+          clearId();
+        }
+        navigate('/login');
     }
 
     const handleDeleteAircraftData = () => {
@@ -124,10 +138,6 @@ const Settings = () => {
     const handleDeleteUser = () => {
         const isConfirmed = window.confirm('Are you sure you want to delete your account? This will lose all your data.');
         if(isConfirmed) {
-            deleteUser({
-                userId: id,
-                navigate: navigate
-            });
             deleteAircraftsByUserId({
                 userId: id,
                 setSuccess: setSuccess,
@@ -149,6 +159,11 @@ const Settings = () => {
                 setMessage: setMessage,
                 setError: setError
             });
+            deleteUser({
+                userId: id,
+                navigate: navigate
+            });
+            handleLogout();
         }
     }
 
