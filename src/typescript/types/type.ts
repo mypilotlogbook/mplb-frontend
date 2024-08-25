@@ -296,6 +296,11 @@ export type NoDataProps = {
     message: string,
 }
 
+export type DeleteUserProps = {
+    userId: string | null,
+    navigate: NavigateFunction,
+}
+
 export type QuickChangePasswordProps = {
     userId: string | null,
     email: string,       

@@ -10,8 +10,9 @@ import { IdContext } from '../../context/UserIdContext';
 import deleteAircraftsByUserId from '../../api/aircraft-endpoints/deleteAircraftsByUserId';
 import { Credentials } from '../../typescript/types/type';
 import quickChangePassword from '../../api/user-endpoints/quickChangePassword';
-import { User } from '../../typescript/interfaces/interface';
 import getUserEmail from '../../api/user-endpoints/getUserEmail';
+import { useNavigate } from 'react-router-dom';
+import deleteUser from '../../api/user-endpoints/deleteUser';
 
 const Settings = () => {
 
@@ -24,6 +25,7 @@ const Settings = () => {
         password: '',
         confirmPassword: '',
     });
+    const navigate = useNavigate();
 
     const idContext = useContext(IdContext);
     if(!idContext) {
@@ -76,6 +78,30 @@ const Settings = () => {
             id: id,
             setEmail: setEmail
         });
+    }
+    
+    const handleDeleteUser = () => {
+        const isConfirmed = window.confirm('Are you sure you want to delete your account? This will lose all your data.');
+        if(isConfirmed) {
+            deleteUser({
+                userId: id,
+                navigate: navigate
+            });
+            deleteAircraftsByUserId({
+                userId: id,
+                setSuccess: setSuccess,
+                setStatusCode: setStatusCode,
+                setMessage: setMessage,
+                setError: setError
+            });
+            deletePilotsByUserId({
+                userId: id,
+                setSuccess: setSuccess,
+                setStatusCode: setStatusCode,
+                setMessage: setMessage,
+                setError: setError
+            });
+        }
     }
 
     useEffect(() => {
@@ -231,7 +257,7 @@ const Settings = () => {
                     <div className="test settings-content-section">
                         <h4 className="test email">Warning. You can delete and deactivate your account. If you delete your account it's cause to loose your all data including Pilots, Flights, Aircrafts and all the analytics and charts. You can't no longer access to your account.</h4>
                         <Tooltip title="Delete Account" arrow>
-                            <button className='test change-button'>Delete Account</button>
+                            <button className='test change-button' onClick={handleDeleteUser}>Delete Account</button>
                         </Tooltip>
                     </div>
                 </div>
