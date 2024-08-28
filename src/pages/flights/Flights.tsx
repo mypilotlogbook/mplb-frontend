@@ -1,16 +1,48 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Flights.scss';
 import PageHeader from '../../components/page-header/PageHeader';
 import { Link } from 'react-router-dom';
-import Pilot from '../../components/pilot/Pilot';
 import NoData from '../../components/no-data/NoData';
-import { PilotProps } from '../../typescript/interfaces/interface';
+import { FlightProps } from '../../typescript/interfaces/interface';
+import { IdContext } from '../../context/UserIdContext';
+import getFlightsByUserId from '../../api/flight-endpoints/getFlightsByUserId';
+import Flight from '../../components/flight/Flight';
 
 const Flights = () => {
 
-    const [pilots, setPilots] = useState<PilotProps[]>([]);
-    const [filteredPilots, setFilteredPilots] = useState<PilotProps[]>([]);
+    const [flights, setFlights] = useState<FlightProps[]>([]);
+    const [filteredFlights, setFilteredFlights] = useState<FlightProps[]>([]);
     const [searchTerm, setSearchTerm] = useState<string>('');
+
+    const idContext = useContext(IdContext);
+    if (!idContext) {
+        throw new Error('Flights Page must be used within a IdProvider');
+    }
+    const { id } = idContext;
+
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const getFlights = () => {
+        getFlightsByUserId({
+            userId: id,
+            setFlights: setFlights,
+        });
+    }
+
+    useEffect(()=> {
+        getFlights();
+    },[]);
+
+    useEffect(() => {
+        const results = flights.filter((flight) =>
+            flight.arrival.airport_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            flight.departure.airport_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            flight.flight_nr?.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setFilteredFlights(results);
+    }, [searchTerm, flights]);
 
     return (
         <div className='test flights'>
@@ -24,8 +56,8 @@ const Flights = () => {
                         type="text" 
                         placeholder="Search flights by arrival / departure / flight registration number" 
                         className="test search-input"
-                        // value={searchTerm}
-                        // onChange={handleSearchChange}
+                        value={searchTerm}
+                        onChange={handleSearchChange}
                     />
                     <img src="https://res.cloudinary.com/dv9ax00l4/image/upload/v1722774870/icons8-search-480_msptia.png" alt="search-logo" className="test search-logo" />
                 </div>
@@ -36,7 +68,7 @@ const Flights = () => {
                 </Link>
             </div>
             <div className="test search-results">
-                <h6 className="test search-results-text">Search Results : <span className='test result-count'>{filteredPilots.length}</span></h6>
+                <h6 className="test search-results-text">Search Results : <span className='test result-count'>{filteredFlights.length}</span></h6>
             </div>.
             <div className="test flights-table">
                 <div className="test table-header">
@@ -61,12 +93,12 @@ const Flights = () => {
                 </div>
                 <div className="test table-body">
                     {
-                        filteredPilots.length === 0 ? <NoData message='No flights data available'/> :
-                        filteredPilots.map((pilot, index) => {
+                        filteredFlights.length === 0 ? <NoData message='No flights data available'/> :
+                        filteredFlights.map((flight, index) => {
                         return (
-                            <Pilot
+                            <Flight
                                 key={index}
-                                {...pilot}
+                                {...flight}
                             />
                         )
                         })
