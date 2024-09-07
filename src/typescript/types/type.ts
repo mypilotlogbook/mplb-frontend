@@ -332,3 +332,18 @@ export type QuickChangePasswordProps = {
     setMessage: Dispatch<SetStateAction<string>>,
     resetCredentials: () => void,
 }
+
+export type GenerateAllAirfieldsReportProps = {
+    setError: Dispatch<SetStateAction<boolean>>,
+    setSuccess: Dispatch<SetStateAction<boolean>>,
+    setStatusCode: Dispatch<SetStateAction<number>>,
+    setMessage: Dispatch<SetStateAction<string>>,
+}
+
+export type GenerateSelectedAirfieldsReportProps = {
+    country: string,
+    setError: Dispatch<SetStateAction<boolean>>,
+    setSuccess: Dispatch<SetStateAction<boolean>>,
+    setStatusCode: Dispatch<SetStateAction<number>>,
+    setMessage: Dispatch<SetStateAction<string>>,
+}
