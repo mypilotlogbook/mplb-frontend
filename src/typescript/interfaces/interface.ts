@@ -163,13 +163,19 @@ export interface UpdatePilot {
 }
 
 export interface Approach{
-    _id?: string,
+    id?: number,
     category?: string;
     description?: string;
 }
 
 export interface Operation{
-    _id?: string,
+    id?: number,
+    category?: string;
+    description?: string;
+}
+
+export interface DelayCode{
+    id?: number,
     category?: string;
     description?: string;
 }
@@ -178,8 +184,8 @@ export interface FlightProps{
     _id?: string;
     
     // Flight time and location
-    date: Date;
-    aircraft: string;
+    date: string;
+    aircraft: AircraftProps;
     flight_nr?: string;
     departure: AirfieldProps;
     arrival: AirfieldProps;
@@ -192,6 +198,65 @@ export interface FlightProps{
     total_time?: string;
     air?: string;
 
+    // Flight crew details
+    pilotOne?: PilotProps;
+    pilotTwo?: PilotProps;
+    pilotThree?: PilotProps;
+    pilotFour?: PilotProps;
+    crew_list?: string;
+    flight_log?: string;
+    remarks?: string;
+    training?: string;
+    delay_code_one?: string;
+    delay_code_two?: string;
+    delay_code_three?: string;
+
+    sign?: string;
+    pic?: string;
+    pic_us?: string;
+    sic?: string;
+    dual?: string;
+    instructor?: string;
+    examinar?: string;
+    relief?: string;
+    task?: string;
+    TO_day?: string;
+    TO_night?: string;
+    LDG_day?: string;
+    LDG_night?: string;
+    lifts?: string;
+    holding?: string;
+    night?: string;
+    ifr?: string;
+    act_instr?: string;
+    sim_instr?: string;
+    xc?: string;
+    pax?: string;
+    de_icing?: boolean;
+    fuel_total?: string;
+    fuel_plan?: string;
+    fuel_used?: string;
+    userId: string;
+
+    approach?: Approach[];
+    operation?: Operation[];
+}
+
+export interface UpdateFlightProps{
+    // Flight time and location
+    date?: string;
+    aircraft?: string;
+    flight_nr?: string;
+    departure: string;
+    arrival: string;
+    std?: string;
+    out_time?: string;
+    takeoff?: string;
+    landing?: string;
+    in_time?: string;
+    sta?: string;
+    total_time?: string;
+    air?: string;
     // Flight crew details
     pilotOne?: string;
     pilotTwo?: string;
@@ -213,6 +278,7 @@ export interface FlightProps{
     instructor?: string;
     examinar?: string;
     relief?: string;
+    task?: string;
     TO_day?: string;
     TO_night?: string;
     LDG_day?: string;
@@ -226,11 +292,68 @@ export interface FlightProps{
     xc?: string;
     pax?: string;
     de_icing?: boolean;
-    fuel_total?: boolean;
-    fuel_plan?: boolean;
-    fuel_used?: boolean;
-    userId: string;
+    fuel_total?: string;
+    fuel_plan?: string;
+    fuel_used?: string;
 
-    approach?: Approach[];
-    operation?: Operation[];
+    approach?: string;
+    operation?: string;
+}
+
+export interface AddFlightForm{
+    // Flight time and location
+    date: string;
+    aircraft?: string;
+    flight_nr?: string;
+    departure: string;
+    arrival: string;
+    std?: string;
+    out_time?: string;
+    takeoff?: string;
+    landing?: string;
+    in_time?: string;
+    sta?: string;
+    total_time?: string;
+    air?: string;
+    // Flight crew details
+    pilotOne?: string;
+    pilotTwo?: string;
+    pilotThree?: string;
+    pilotFour?: string;
+    crew_list?: string;
+    flight_log?: string;
+    remarks?: string;
+    training?: string;
+    delay_code_one?: string;
+    delay_code_two?: string;
+    delay_code_three?: string;
+
+    sign?: string;
+    pic?: string;
+    pic_us?: string;
+    sic?: string;
+    dual?: string;
+    instructor?: string;
+    examinar?: string;
+    relief?: string;
+    task?: string;
+    TO_day?: string;
+    TO_night?: string;
+    LDG_day?: string;
+    LDG_night?: string;
+    lifts?: string;
+    holding?: string;
+    night?: string;
+    ifr?: string;
+    act_instr?: string;
+    sim_instr?: string;
+    xc?: string;
+    pax?: string;
+    de_icing?: boolean;
+    fuel_total?: string;
+    fuel_plan?: string;
+    fuel_used?: string;
+
+    approach?: string;
+    operation?: string;
 }

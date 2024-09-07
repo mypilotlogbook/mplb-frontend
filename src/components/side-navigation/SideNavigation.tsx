@@ -28,7 +28,7 @@ const SideNavigation = () => {
             id: 2,
             name: 'Analytics',
             route: '/dashboard/analytics',
-            iconName: 'https://res.cloudinary.com/dv9ax00l4/image/upload/v1722709010/house-chimney_xg1gnt.png'
+            iconName: 'https://res.cloudinary.com/dv9ax00l4/image/upload/v1725125965/chart-line-up-down_yu7i3y.png'
         },
         {
             id: 3,

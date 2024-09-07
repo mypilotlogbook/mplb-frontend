@@ -1,6 +1,6 @@
 import { Dispatch, ReactNode, SetStateAction } from "react"
 import { NavigateFunction } from "react-router-dom"
-import { AircraftProps, AirfieldProps, FlightProps, PilotProps, UpdateAircraft, UpdatePilot, UpdateUser, User } from "../interfaces/interface"
+import { AircraftProps, AirfieldProps, FlightProps, PilotProps, UpdateAircraft, UpdateFlightProps, UpdatePilot, UpdateUser, User } from "../interfaces/interface"
 
 export type AuthHeaderProps = {
     title: string
@@ -145,6 +145,7 @@ export type DashboardTextfieldProps = {
     name: string;
     value: string;
     placeholder: string;
+    isDescription?: boolean;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -218,6 +219,15 @@ export type AddPilotProps = {
     setMessage?: Dispatch<SetStateAction<string>>,
     resetCredentials?: () => void,
     pilot: PilotProps,
+}
+
+export type AddFlightProps = {
+    setError?: Dispatch<SetStateAction<boolean>>,
+    setSuccess?: Dispatch<SetStateAction<boolean>>,
+    setStatusCode?: Dispatch<SetStateAction<number>>,
+    setMessage?: Dispatch<SetStateAction<string>>,
+    resetCredentials?: () => void,
+    flightObj: UpdateFlightProps,
 }
 
 export type AddAircraftProps = {
@@ -304,6 +314,12 @@ export type DeleteUserProps = {
 export type GetFlightsByUserIdProps = {
     userId: string | null,
     setFlights: Dispatch<SetStateAction<FlightProps[]>>,
+}
+
+export type GetSingleFlightProps = {
+    flightId: string | null,
+    setFlight?: Dispatch<SetStateAction<FlightProps | undefined>>,
+    setFormData?: Dispatch<SetStateAction<UpdateFlightProps | undefined>>,
 }
 
 export type QuickChangePasswordProps = {

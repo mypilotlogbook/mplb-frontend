@@ -26,6 +26,7 @@ import AddPilot from '../../pages/add-pilot/AddPilot';
 import SinglePilot from '../../pages/single-pilot/SinglePilot';
 import AnalyticsPage from '../../pages/analytics-page/AnalyticsPage';
 import AddFlight from '../../pages/add-flight/AddFlight';
+import SingleFlight from '../../pages/single-flight/SingleFlight';
 
 const MainNavigation = () => {
 
@@ -54,6 +55,7 @@ const MainNavigation = () => {
               <Route path='pilot/add-pilot' element={<AddPilot />}/>
               <Route path='pilot/:pilotId' element={<SinglePilot />}/>
               <Route path='flights' element={<Flights />}/>
+              <Route path='flight/:flightId' element={<SingleFlight />}/>
               <Route path='flight/add-flight' element={<AddFlight />}/>
               <Route path='airfield/:airfieldId' element={<SingleAirfield />}/>
               <Route path='analytics' element={<AnalyticsPage />}/>
