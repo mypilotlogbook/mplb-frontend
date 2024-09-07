@@ -7,12 +7,18 @@ import Pilot from '../../components/pilot/Pilot';
 import { IdContext } from '../../context/UserIdContext';
 import getPilotsByUserId from '../../api/pilot-endpoints/getPilotsByUserId';
 import NoData from '../../components/no-data/NoData';
+import AuthButton from '../../components/auth-button/AuthButton';
 
 const Pilots = () => {
 
     const [pilots, setPilots] = useState<PilotProps[]>([]);
     const [filteredPilots, setFilteredPilots] = useState<PilotProps[]>([]);
     const [searchTerm, setSearchTerm] = useState<string>('');
+
+    const [error, setError] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [statusCode, setStatusCode] = useState(0);
+    const [message, setMessage] = useState('');
 
     const idContext = useContext(IdContext);
     if (!idContext) {
@@ -23,6 +29,29 @@ const Pilots = () => {
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(event.target.value);
     };
+
+    const generateAllThePioltsReportFunction = () => {
+      const isConfirmed = window.confirm('Are you sure want to export pilots document? ');
+      if(isConfirmed) {
+        
+      }else {
+        alert('Document export process was cancelled');
+      }
+    }
+
+    const generateSelectedPilotsReportFunction = () => {
+      const isConfirmed = window.confirm('Are you sure want to export pilots document? ');
+      if(isConfirmed) {
+        if(filteredPilots.length > 0) {
+          
+        }else {
+          alert('Pilots table is empty. Please select a pilot or search in the textfield.');
+        }
+      } else {
+        alert('Document export process was cancelled');
+      }
+      
+    }
 
     const getPilots = () => {
         getPilotsByUserId({
@@ -99,6 +128,36 @@ const Pilots = () => {
                         })
                     }
                 </div>
+
+                <hr className='test hard-line'/>
+
+                {/* report section */}
+                <div className="test report-section">
+                    <h3 className="test section-header">Pilot Reports</h3>
+                    <h5 className="test section-subheader">Generate reports according to all the pilots / selected pilots</h5>
+                    <hr className='test line'/>
+                    <div className="test report-content-section">
+                        <div className="r-section test">
+                            <h5 className="test section-subheader">Export all the pilots in our database. In here you can export all the pilots data What you added to this system.</h5>
+                            <AuthButton 
+                                title='All Pilots Report'
+                                backgroundColor='black'
+                                textColor='white'
+                                onClick={generateAllThePioltsReportFunction}
+                            />
+                        </div>
+                        <div className="r-section test">
+                            <h5 className="test section-subheader">Export selected pilots according to your choice. In here Please selected a country or search the pilots you wanted to export.</h5>
+                            <AuthButton 
+                                title='Selected Pilots Report'
+                                textColor='black'
+                                borderColor='black'
+                                onClick={generateSelectedPilotsReportFunction}
+                            />
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     );
