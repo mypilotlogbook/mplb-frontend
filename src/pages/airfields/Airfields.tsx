@@ -6,6 +6,9 @@ import { AirfieldProps } from '../../typescript/interfaces/interface';
 import getAirFields from '../../api/airfield-endpoints/fetchAirfields';
 import NoData from '../../components/no-data/NoData';
 import AuthButton from '../../components/auth-button/AuthButton';
+import generateAllAirfieldsReport from '../../api/report-endpoints/generateAllAirfieldsReport';
+import Alert from '../../components/alert/Alert';
+import generateSelectedAirfieldsReport from '../../api/report-endpoints/generateSelectedAirfieldReport';
 
 const Airfields = () => {
 
@@ -13,6 +16,45 @@ const Airfields = () => {
   const [filteredAirfields, setFilteredAirfields] = useState<AirfieldProps[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedCountry, setSelectedCountry] = useState<string>('');
+
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [statusCode, setStatusCode] = useState(0);
+  const [message, setMessage] = useState('');
+
+  const generateAllTheAirfieldsReportFunction = () => {
+    const isConfirmed = window.confirm('Are you sure want to export airfields document? ');
+    if(isConfirmed) {
+      generateAllAirfieldsReport({
+        setSuccess: setSuccess,
+        setStatusCode: setStatusCode,
+        setMessage: setMessage,
+        setError: setError
+      });
+    }else {
+      alert('Document export process was cancelled');
+    }
+  }
+
+  const generateSelectedAirfieldsReportFunction = () => {
+    const isConfirmed = window.confirm('Are you sure want to export airfields document? ');
+    if(isConfirmed) {
+      if(filteredAirfields.length > 0) {
+        generateSelectedAirfieldsReport({
+          country: selectedCountry,
+          setSuccess: setSuccess,
+          setStatusCode: setStatusCode,
+          setMessage: setMessage,
+          setError: setError
+        });
+      }else {
+        alert('Airfields table is empty. Please select a country or search in the textfield.');
+      }
+    } else {
+      alert('Document export process was cancelled');
+    }
+    
+  }
 
   const fetchAirfields = async () => {
     getAirFields({
@@ -56,6 +98,22 @@ const Airfields = () => {
 
   return (
     <div className='test airfields'>
+
+      {
+        error && <Alert
+          message={message}
+          statusCode={statusCode}
+          type='error'
+        />
+      }
+      {
+        success && <Alert
+          message={message}
+          statusCode={statusCode}
+          type='success'
+        />
+      }
+
       <PageHeader 
         title='Airfields List'
         subTitle='List down all the airfields and take your time to explore.'
@@ -141,6 +199,7 @@ const Airfields = () => {
                     title='All Airfields Report'
                     backgroundColor='black'
                     textColor='white'
+                    onClick={generateAllTheAirfieldsReportFunction}
                   />
                 </div>
                 <div className="r-section test">
@@ -149,6 +208,7 @@ const Airfields = () => {
                     title='Selected Airfields Report'
                     textColor='black'
                     borderColor='black'
+                    onClick={generateSelectedAirfieldsReportFunction}
                   />
                 </div>
             </div>
