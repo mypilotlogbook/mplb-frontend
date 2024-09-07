@@ -5,7 +5,15 @@
 .airfields {
     width: 100%;
     max-height: 100vh;
-    overflow-y: hidden;
+    overflow-y: scroll;
+    margin-bottom: 20px;
+
+    &::-webkit-scrollbar-track {
+        display: none;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: red;
+    }
 
     .search-section {
         width: 100%;
@@ -134,10 +142,68 @@
         .table-body {
             width: 100%;
             max-height: 60vh;
+            // max-height: 40vh;
             overflow-y: scroll;
 
             &::-webkit-scrollbar {
                 display: none;
+            }
+        }
+    }
+
+    .hard-line {
+        width: 100%;
+        opacity: 0.5;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        height: 2px;
+        border: none;
+        outline: none;
+        background-color: $black;
+    }
+
+    .line {
+        width: 100%;
+        opacity: 0.5;
+        margin-bottom: 20px;        
+        border: 1px solid rgb(205, 205, 205);
+    }
+
+    // report section
+    .report-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        .section-header {
+            font-family: $primary-font;
+        }
+
+        .section-subheader {
+            font-family: $primary-font;
+            color: $textfield-text-color;
+            font-weight: normal;
+            font-size: 11px;
+            margin-bottom: 15px;
+        }
+
+        .report-content-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            width: 100%;
+            gap: 30px;
+
+            .r-section {
+                display: flex;
+                flex-direction: column;
+
+                .section-subheader {
+                    font-family: $primary-font;
+                    color: $textfield-text-color;
+                    font-weight: normal;
+                    font-size: 11px;
+                    margin-bottom: 15px;
+                }
             }
         }
     }

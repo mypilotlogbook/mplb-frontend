@@ -5,6 +5,7 @@ import Airfield from '../../components/airfield/Airfield';
 import { AirfieldProps } from '../../typescript/interfaces/interface';
 import getAirFields from '../../api/airfield-endpoints/fetchAirfields';
 import NoData from '../../components/no-data/NoData';
+import AuthButton from '../../components/auth-button/AuthButton';
 
 const Airfields = () => {
 
@@ -125,6 +126,34 @@ const Airfields = () => {
             })
           }
         </div>
+
+        <hr className='test hard-line'/>
+
+        {/* report section */}
+        <div className="test report-section">
+            <h3 className="test section-header">Airfield Reports</h3>
+            <h5 className="test section-subheader">Generate reports according to all the airfields / selected airfields</h5>
+            <hr className='test line'/>
+            <div className="test report-content-section">
+                <div className="r-section test">
+                  <h5 className="test section-subheader">Export all the airfields in our database. In here you can export all the airfields data in the system. These are the default airfields.</h5>
+                  <AuthButton 
+                    title='All Airfields Report'
+                    backgroundColor='black'
+                    textColor='white'
+                  />
+                </div>
+                <div className="r-section test">
+                  <h5 className="test section-subheader">Export selected airfields according to your choice. In here Please selected a country or search the airfields you wanted to export.</h5>
+                  <AuthButton 
+                    title='Selected Airfields Report'
+                    textColor='black'
+                    borderColor='black'
+                  />
+                </div>
+            </div>
+        </div>
+
       </div>
     </div>
   );
