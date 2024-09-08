@@ -9,6 +9,8 @@ import getPilotsByUserId from '../../api/pilot-endpoints/getPilotsByUserId';
 import NoData from '../../components/no-data/NoData';
 import AuthButton from '../../components/auth-button/AuthButton';
 import Alert from '../../components/alert/Alert';
+import generateAllPilotsPdf from '../../api/report-endpoints/generateAllPilotsReport';
+import generateSelectedPilotsPdf from '../../api/report-endpoints/generateSelectedPilotsReport';
 
 const Pilots = () => {
 
@@ -34,7 +36,13 @@ const Pilots = () => {
     const generateAllThePioltsReportFunction = () => {
       const isConfirmed = window.confirm('Are you sure want to export pilots document? ');
       if(isConfirmed) {
-        
+        generateAllPilotsPdf({
+            userId: id,
+            setSuccess: setSuccess,
+            setStatusCode: setStatusCode,
+            setMessage: setMessage,
+            setError: setError
+        });
       }else {
         alert('Document export process was cancelled');
       }
@@ -44,7 +52,13 @@ const Pilots = () => {
       const isConfirmed = window.confirm('Are you sure want to export pilots document? ');
       if(isConfirmed) {
         if(filteredPilots.length > 0) {
-          
+            generateSelectedPilotsPdf({
+                pilotsList: filteredPilots,
+                setSuccess: setSuccess,
+                setStatusCode: setStatusCode,
+                setMessage: setMessage,
+                setError: setError,
+            });
         }else {
           alert('Pilots table is empty. Please select a pilot or search in the textfield.');
         }
