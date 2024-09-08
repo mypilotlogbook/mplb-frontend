@@ -1,10 +1,10 @@
 import axios from "axios";
 import { baseURL } from "../baseURL";
-import { GenerateSelectedPilotsReportProps } from "../../typescript/types/type";
+import { GenerateAllAircraftsReportProps } from "../../typescript/types/type";
 
-const generateSelectedPilotsPdf = (props: GenerateSelectedPilotsReportProps) => {
+const generateAllAircraftsPdf = (props: GenerateAllAircraftsReportProps) => {
     try {
-        axios.post(`${baseURL}/report/generateSelectedPilotsPdf`, { pilotsList: props.pilotsList })
+        axios.post(`${baseURL}/report/generateAllAircraftsPdf`, { userId: props.userId })
         .then((res) => {
             console.log(res.data.data);
             alert('Document generated');
@@ -41,4 +41,4 @@ const generateSelectedPilotsPdf = (props: GenerateSelectedPilotsReportProps) => 
     }
 };
 
-export default generateSelectedPilotsPdf;
+export default generateAllAircraftsPdf;
