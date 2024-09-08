@@ -364,6 +364,14 @@ export type GenerateAllAircraftsReportProps = {
     setMessage: Dispatch<SetStateAction<string>>,
 }
 
+export type GenerateAllFlightsReportProps = {
+    userId: string | null,
+    setError: Dispatch<SetStateAction<boolean>>,
+    setSuccess: Dispatch<SetStateAction<boolean>>,
+    setStatusCode: Dispatch<SetStateAction<number>>,
+    setMessage: Dispatch<SetStateAction<string>>,
+}
+
 export type GenerateSelectedPilotsReportProps = {
     pilotsList: PilotProps[],
     setError: Dispatch<SetStateAction<boolean>>,
@@ -374,6 +382,14 @@ export type GenerateSelectedPilotsReportProps = {
 
 export type GenerateSelectedAircraftsReportProps = {
     aircraftsList: AircraftProps[],
+    setError: Dispatch<SetStateAction<boolean>>,
+    setSuccess: Dispatch<SetStateAction<boolean>>,
+    setStatusCode: Dispatch<SetStateAction<number>>,
+    setMessage: Dispatch<SetStateAction<string>>,
+}
+
+export type GenerateSelectedFlightsReportProps = {
+    flightsList: FlightProps[],
     setError: Dispatch<SetStateAction<boolean>>,
     setSuccess: Dispatch<SetStateAction<boolean>>,
     setStatusCode: Dispatch<SetStateAction<number>>,

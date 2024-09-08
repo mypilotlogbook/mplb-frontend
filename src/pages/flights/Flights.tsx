@@ -9,6 +9,8 @@ import getFlightsByUserId from '../../api/flight-endpoints/getFlightsByUserId';
 import Flight from '../../components/flight/Flight';
 import AuthButton from '../../components/auth-button/AuthButton';
 import Alert from '../../components/alert/Alert';
+import generateSelectedFlightsPdf from '../../api/report-endpoints/generateSelectedFlightsReport';
+import generateAllFlightsPdf from '../../api/report-endpoints/generateAllFlightsReport';
 
 const Flights = () => {
 
@@ -34,7 +36,13 @@ const Flights = () => {
     const generateAllTheFlightsReportFunction = () => {
       const isConfirmed = window.confirm('Are you sure want to export pilots document? ');
       if(isConfirmed) {
-        
+        generateAllFlightsPdf({
+          setSuccess: setSuccess,
+          setStatusCode: setStatusCode,
+          setMessage: setMessage,
+          setError: setError,
+          userId: id
+        });
       }else {
         alert('Document export process was cancelled');
       }
@@ -44,7 +52,13 @@ const Flights = () => {
       const isConfirmed = window.confirm('Are you sure want to export pilots document? ');
       if(isConfirmed) {
         if(filteredFlights.length > 0) {
-          
+            generateSelectedFlightsPdf({
+                flightsList: filteredFlights,
+                setSuccess: setSuccess,
+                setStatusCode: setStatusCode,
+                setMessage: setMessage,
+                setError: setError,
+            });
         }else {
           alert('Pilots table is empty. Please select a pilot or search in the textfield.');
         }
@@ -69,6 +83,7 @@ const Flights = () => {
         const results = flights.filter((flight) =>
             flight.arrival.airport_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
             flight.departure.airport_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            flight.date.toLowerCase().includes(searchTerm.toLowerCase()) ||
             flight.flight_nr?.toLowerCase().includes(searchTerm.toLowerCase())
         );
         setFilteredFlights(results);
