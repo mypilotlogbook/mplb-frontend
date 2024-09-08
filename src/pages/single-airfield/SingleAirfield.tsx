@@ -4,10 +4,13 @@ import BackButton from '../../components/back-button/BackButton';
 import { Link, useParams } from 'react-router-dom';
 import { AirfieldProps } from '../../typescript/interfaces/interface';
 import getAirField from '../../api/airfield-endpoints/getAirfield';
+import { Skeleton } from '@mui/material';
+import Spline from '@splinetool/react-spline';
 
 const SingleAirfield = () => {
 
     const [airfield, setAirfield] = useState<AirfieldProps>();
+    const [loaded, setLoaded] = useState(false);
 
     const { airfieldId } = useParams();
 
@@ -31,10 +34,29 @@ const SingleAirfield = () => {
                 <h6 className="test page-subtitle">Back to Airfields</h6>
             </div>
             <div className="test single-airfield-content">
+
+                {/* airfield spline section */}
+                <div className="test single-airfield-hero">
+                    {!loaded && (
+                        <Skeleton
+                        variant="rectangular"
+                        width="100%"
+                        height="100%"
+                        animation="wave"
+                        />
+                    )}
+                    <Spline
+                        onLoad={() => setLoaded(true)}
+                        className="test single-airfield-spline"
+                        scene="https://prod.spline.design/UpWvNsM5OcMQ0KO8/scene.splinecode"
+                    />
+                </div>
+
                 <div className="test upper">
                     <h1 className="test name">{airfield?.airport_name}</h1>
                     <h6 className="test code">{airfield?._id}</h6>
                 </div>
+
                 <div className="test middle">
                     <div className="test middle-left">
                         <div className="test info-container">
