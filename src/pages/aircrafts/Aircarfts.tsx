@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom';
 import NoData from '../../components/no-data/NoData';
 import Alert from '../../components/alert/Alert';
 import AuthButton from '../../components/auth-button/AuthButton';
+import generateAllAircraftsPdf from '../../api/report-endpoints/generateAllAircraftsReport';
+import generateSelectedAircraftsPdf from '../../api/report-endpoints/generateSelectedAircrafts';
 
 const Aircarfts = () => {
 
@@ -34,7 +36,13 @@ const Aircarfts = () => {
     const generateAllAircraftsReportFunction = () => {
       const isConfirmed = window.confirm('Are you sure want to export your all the aircraft document? ');
       if(isConfirmed) {
-        
+        generateAllAircraftsPdf({
+            userId: id,
+            setSuccess: setSuccess,
+            setError: setError,
+            setStatusCode: setStatusCode,
+            setMessage: setMessage
+        });
       }else {
         alert('Document export process was cancelled');
       }
@@ -44,7 +52,13 @@ const Aircarfts = () => {
       const isConfirmed = window.confirm('Are you sure want to export selected aircrafts document? ');
       if(isConfirmed) {
         if(filteredAircrafts.length > 0) {
-          
+          generateSelectedAircraftsPdf({
+            aircraftsList: filteredAircrafts,
+            setSuccess: setSuccess,
+            setError: setError,
+            setStatusCode: setStatusCode,
+            setMessage: setMessage
+          });
         }else {
           alert('Aircraft table is empty. Please select a aircraft or search in the textfield.');
         }
@@ -68,6 +82,7 @@ const Aircarfts = () => {
     useEffect(() => {
         const results = aircrafts.filter((aircraft) =>
             aircraft.manufacturer?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            aircraft.type?.toLowerCase().includes(searchTerm.toLowerCase()) ||
             aircraft.model?.toLowerCase().includes(searchTerm.toLowerCase())
         );
         setFilteredAircrafts(results);
@@ -157,7 +172,7 @@ const Aircarfts = () => {
 
                 {/* report section */}
                 <div className="test report-section">
-                    <h3 className="test section-header">Aircraft Reports</h3>
+                    <h3 className="test section-header">Aircrafts Reports</h3>
                     <h5 className="test section-subheader">Generate reports according to all the aircrafts / selected aircrafts</h5>
                     <hr className='test line'/>
                     <div className="test report-content-section">
