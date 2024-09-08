@@ -8,6 +8,7 @@ import { IdContext } from '../../context/UserIdContext';
 import getPilotsByUserId from '../../api/pilot-endpoints/getPilotsByUserId';
 import NoData from '../../components/no-data/NoData';
 import AuthButton from '../../components/auth-button/AuthButton';
+import Alert from '../../components/alert/Alert';
 
 const Pilots = () => {
 
@@ -76,10 +77,27 @@ const Pilots = () => {
 
     return (
         <div className='test pilots'>
+            
+            {
+                error && <Alert
+                message={message}
+                statusCode={statusCode}
+                type='error'
+                />
+            }
+            {
+                success && <Alert
+                message={message}
+                statusCode={statusCode}
+                type='success'
+                />
+            }
+
             <PageHeader
                 title='Pilots List'
                 subTitle='Manage your pilots and their data.'
             />
+
             <div className="test search-section">
                 <div className="test searchbar">
                     <input 
