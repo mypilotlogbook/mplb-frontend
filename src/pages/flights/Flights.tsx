@@ -7,12 +7,19 @@ import { FlightProps } from '../../typescript/interfaces/interface';
 import { IdContext } from '../../context/UserIdContext';
 import getFlightsByUserId from '../../api/flight-endpoints/getFlightsByUserId';
 import Flight from '../../components/flight/Flight';
+import AuthButton from '../../components/auth-button/AuthButton';
+import Alert from '../../components/alert/Alert';
 
 const Flights = () => {
 
     const [flights, setFlights] = useState<FlightProps[]>([]);
     const [filteredFlights, setFilteredFlights] = useState<FlightProps[]>([]);
     const [searchTerm, setSearchTerm] = useState<string>('');
+
+    const [error, setError] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [statusCode, setStatusCode] = useState(0);
+    const [message, setMessage] = useState('');
 
     const idContext = useContext(IdContext);
     if (!idContext) {
@@ -23,6 +30,29 @@ const Flights = () => {
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(event.target.value);
     };
+
+    const generateAllTheFlightsReportFunction = () => {
+      const isConfirmed = window.confirm('Are you sure want to export pilots document? ');
+      if(isConfirmed) {
+        
+      }else {
+        alert('Document export process was cancelled');
+      }
+    }
+  
+    const generateSelectedFlightsReportFunction = () => {
+      const isConfirmed = window.confirm('Are you sure want to export pilots document? ');
+      if(isConfirmed) {
+        if(filteredFlights.length > 0) {
+          
+        }else {
+          alert('Pilots table is empty. Please select a pilot or search in the textfield.');
+        }
+      } else {
+        alert('Document export process was cancelled');
+      }
+      
+    }
 
     const getFlights = () => {
         getFlightsByUserId({
@@ -46,10 +76,27 @@ const Flights = () => {
 
     return (
         <div className='test flights'>
+
+            {
+                error && <Alert
+                message={message}
+                statusCode={statusCode}
+                type='error'
+                />
+            }
+            {
+                success && <Alert
+                message={message}
+                statusCode={statusCode}
+                type='success'
+                />
+            }
+
             <PageHeader
                 title='Flights List'
                 subTitle='Manage all the flights and track their data.'
             />
+
             <div className="test search-section">
                 <div className="test searchbar">
                     <input 
@@ -104,6 +151,36 @@ const Flights = () => {
                         })
                     }
                 </div>
+
+                <hr className='test hard-line'/>
+
+                {/* report section */}
+                <div className="test report-section">
+                    <h3 className="test section-header">Flight Reports</h3>
+                    <h5 className="test section-subheader">Generate reports according to all the flights / selected flights</h5>
+                    <hr className='test line'/>
+                    <div className="test report-content-section">
+                        <div className="r-section test">
+                            <h5 className="test section-subheader">Export all the flights in our database. In here you can export all the flights data What you added to this system.</h5>
+                            <AuthButton 
+                                title='All Flights Report'
+                                backgroundColor='black'
+                                textColor='white'
+                                onClick={generateAllTheFlightsReportFunction}
+                            />
+                        </div>
+                        <div className="r-section test">
+                            <h5 className="test section-subheader">Export selected pilots according to your choice. In here Please selected a country or search the pilots you wanted to export.</h5>
+                            <AuthButton 
+                                title='Selected Flights Report'
+                                textColor='black'
+                                borderColor='black'
+                                onClick={generateSelectedFlightsReportFunction}
+                            />
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     );
