@@ -21,6 +21,7 @@ import { Skeleton } from '@mui/material';
 import getAirFields from '../../api/airfield-endpoints/fetchAirfields';
 import getAircraftsByUserId from '../../api/aircraft-endpoints/getAircraftsByUserId';
 import getFlightsByUserId from '../../api/flight-endpoints/getFlightsByUserId';
+import getMonthlyFlightAnalytics from '../../api/analytics/getMonthlyFlightAnalytics';
 
 type ChartData = {
     name: string;
@@ -30,12 +31,21 @@ type ChartData = {
 const Overview = () => {
 
     const data: ChartData = [
-        { name: 'Jan', value: 400 },
-        { name: 'Feb', value: 300 },
-        { name: 'Mar', value: 200 },
-        { name: 'Apr', value: 278 },
-        { name: 'May', value: 189 },
+        { name: 'Jan', value: 4 },
+        { name: 'Feb', value: 3 },
+        { name: 'Mar', value: 2 },
+        { name: 'Apr', value: 2 },
+        { name: 'May', value: 17 },
+        { name: 'Jun', value: 30 },
+        { name: 'Jul', value: 5 },
+        { name: 'Aug', value: 20 },
+        { name: 'Sep', value: 11 },
+        { name: 'Oct', value: 16 },
+        { name: 'Nov', value: 19 },
+        { name: 'Dec', value: 10 },
     ];
+
+    const [monthlyAnalytics, setMonthlyAnalytics] = useState([]);
 
     const [pilots, setPilots] = useState<PilotProps[]>([]);
     const [airfields, setAirfields] = useState<AirfieldProps[]>([]);
@@ -68,7 +78,15 @@ const Overview = () => {
         });
     }
 
+    const getAnalyticsData = () => {
+        getMonthlyFlightAnalytics({
+            userId: id,
+            setMonthlyAnalytics: setMonthlyAnalytics,
+        });
+    }
+
     useEffect(() => {
+        getAnalyticsData();
         getCardDetails();
     }, []);
 
@@ -86,7 +104,7 @@ const Overview = () => {
                         <div className="test left">
                             <Link to='/dashboard/analytics'>
                                 <ResponsiveContainer width="100%" height={200}>
-                                    <LineChart data={data}>
+                                    <LineChart data={monthlyAnalytics}>
                                         <CartesianGrid strokeDasharray="3 3" />
                                         <XAxis dataKey="name" />
                                         <YAxis />

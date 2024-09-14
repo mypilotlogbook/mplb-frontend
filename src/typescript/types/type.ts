@@ -395,3 +395,8 @@ export type GenerateSelectedFlightsReportProps = {
     setStatusCode: Dispatch<SetStateAction<number>>,
     setMessage: Dispatch<SetStateAction<string>>,
 }
+
+export type GetMonthlyFlightAnalyticsProps = {
+    userId: string | null,
+    setMonthlyAnalytics: Dispatch<SetStateAction<any>>,
+}
