@@ -77,7 +77,7 @@ const AnalyticsPage = () => {
                 <div className="test lower-section">
                   <div className="test left-section">
                     <h2 className='test graph-text'>Monthly Flights</h2>
-                    <ResponsiveContainer width="100%" height={200}>
+                    <ResponsiveContainer width="100%" height={200} className='chart'>
                         <LineChart data={data}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="name" />
@@ -90,7 +90,7 @@ const AnalyticsPage = () => {
                   </div>
                   <div className="test right-section">
                     <h2 className='test graph-text'>Yearly Flights</h2>
-                    <ResponsiveContainer width="100%" height={200}>
+                    <ResponsiveContainer width="100%" height={200} className='chart'>
                         <LineChart data={data}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="name" />
@@ -129,7 +129,7 @@ const AnalyticsPage = () => {
                 <div className="test lower-section">
                   <div className="test left-section">
                     <h2 className='test graph-text'>Monthly Aircrafts</h2>
-                    <ResponsiveContainer width="100%" height={200}>
+                    <ResponsiveContainer width="100%" height={200} className='chart'>
                         <LineChart data={data}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="name" />
@@ -142,7 +142,7 @@ const AnalyticsPage = () => {
                   </div>
                   <div className="test right-section">
                     <h2 className='test graph-text'>Yearly Aircrafts</h2>
-                    <ResponsiveContainer width="100%" height={200}>
+                    <ResponsiveContainer width="100%" height={200} className='chart'>
                         <LineChart data={data}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="name" />
@@ -181,7 +181,7 @@ const AnalyticsPage = () => {
                 <div className="test lower-section">
                   <div className="test left-section">
                     <h2 className='test graph-text'>Monthly Pilots</h2>
-                    <ResponsiveContainer width="100%" height={200}>
+                    <ResponsiveContainer width="100%" height={200} className='chart'>
                         <LineChart data={data}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="name" />
@@ -194,7 +194,7 @@ const AnalyticsPage = () => {
                   </div>
                   <div className="test right-section">
                     <h2 className='test graph-text'>Yearly Pilots</h2>
-                    <ResponsiveContainer width="100%" height={200}>
+                    <ResponsiveContainer width="100%" height={200} className='chart'>
                         <LineChart data={data}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="name" />

@@ -103,7 +103,7 @@ const Overview = () => {
                     <div className="test chart-container">
                         <div className="test left">
                             <Link to='/dashboard/analytics'>
-                                <ResponsiveContainer width="100%" height={200}>
+                                <ResponsiveContainer width="100%" height={200} className='chart'>
                                     <LineChart data={monthlyAnalytics}>
                                         <CartesianGrid strokeDasharray="3 3" />
                                         <XAxis dataKey="name" />
