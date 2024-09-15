@@ -61,6 +61,11 @@
                 .left {
                     margin-top: 40px;
                     margin-right: 20px;
+
+                    .chart {
+                        font-family: $third-font;
+                        font-size: 12px;
+                    }
                 }
             }
 
