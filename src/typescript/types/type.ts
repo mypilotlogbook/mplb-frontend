@@ -400,3 +400,13 @@ export type GetMonthlyFlightAnalyticsProps = {
     userId: string | null,
     setMonthlyAnalytics: Dispatch<SetStateAction<any>>,
 }
+
+export type GetMonthlyPilotsAnalyticsProps = {
+    userId: string | null,
+    setMonthlyPilotAnalytics: Dispatch<SetStateAction<any>>,
+}
+
+export type GetMonthlyAircraftsAnalyticsProps = {
+    userId: string | null,
+    setMonthlyAircraftAnalytics: Dispatch<SetStateAction<any>>,
+}
