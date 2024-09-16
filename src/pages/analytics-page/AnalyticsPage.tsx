@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './AnalyticsPage.scss';
 import PageHeader from '../../components/page-header/PageHeader';
 import {
@@ -12,6 +12,9 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { IdContext } from '../../context/UserIdContext';
+import getMonthlyFlightAnalytics from '../../api/analytics/getMonthlyFlightAnalytics';
+import getMonthlyPilotsAnalytics from '../../api/analytics/getMonthlyPilotsAnalytics';
+import getMonthlyAircraftsAnalytics from '../../api/analytics/getMonthlyAircraftsAnalytics';
 
 type ChartData = {
   name: string;
@@ -20,29 +23,72 @@ type ChartData = {
 
 const AnalyticsPage = () => {
 
+  const [monthlyAnalytics, setMonthlyAnalytics] = useState([
+    { name: 'Jan', value: 0 },
+    { name: 'Feb', value: 0 },
+    { name: 'Mar', value: 0 },
+    { name: 'Apr', value: 0 },
+    { name: 'May', value: 0 },
+    { name: 'Jun', value: 0 },
+    { name: 'Jul', value: 0 },
+    { name: 'Aug', value: 0 },
+    { name: 'Sep', value: 0 },
+    { name: 'Oct', value: 0 },
+    { name: 'Nov', value: 0 },
+    { name: 'Dec', value: 0 },
+  ]);
+  const [monthlyPilotAnalytics, setMonthlyPilotAnalytics] = useState([
+    { name: 'Jan', value: 0 },
+    { name: 'Feb', value: 0 },
+    { name: 'Mar', value: 0 },
+    { name: 'Apr', value: 0 },
+    { name: 'May', value: 0 },
+    { name: 'Jun', value: 0 },
+    { name: 'Jul', value: 0 },
+    { name: 'Aug', value: 0 },
+    { name: 'Sep', value: 0 },
+    { name: 'Oct', value: 0 },
+    { name: 'Nov', value: 0 },
+    { name: 'Dec', value: 0 },
+  ]);
+  const [monthlyAircraftAnalytics, setMonthlyAircraftAnalytics] = useState([
+    { name: 'Jan', value: 0 },
+    { name: 'Feb', value: 0 },
+    { name: 'Mar', value: 0 },
+    { name: 'Apr', value: 0 },
+    { name: 'May', value: 0 },
+    { name: 'Jun', value: 0 },
+    { name: 'Jul', value: 0 },
+    { name: 'Aug', value: 0 },
+    { name: 'Sep', value: 0 },
+    { name: 'Oct', value: 0 },
+    { name: 'Nov', value: 0 },
+    { name: 'Dec', value: 0 },
+  ]);
+
   const idContext = useContext(IdContext);
   if(!idContext) {
       throw new Error('IdContext not found');
   }
   const { id } = idContext;
 
-  const data: ChartData = [
-      { name: 'Jan', value: 4 },
-      { name: 'Feb', value: 3 },
-      { name: 'Mar', value: 2 },
-      { name: 'Apr', value: 2 },
-      { name: 'May', value: 17 },
-      { name: 'Jun', value: 30 },
-      { name: 'Jul', value: 5 },
-      { name: 'Aug', value: 20 },
-      { name: 'Sep', value: 11 },
-      { name: 'Oct', value: 16 },
-      { name: 'Nov', value: 19 },
-      { name: 'Dec', value: 10 },
-  ];
+  const getAnalyticsData = () => {
+    getMonthlyFlightAnalytics({
+        userId: id,
+        setMonthlyAnalytics: setMonthlyAnalytics,
+    });
+    getMonthlyPilotsAnalytics({
+      userId: id,
+      setMonthlyPilotAnalytics: setMonthlyPilotAnalytics
+    });
+    getMonthlyAircraftsAnalytics({
+      userId: id,
+      setMonthlyAircraftAnalytics: setMonthlyAircraftAnalytics
+    });
+  }
 
   useEffect(() => {
-
+    getAnalyticsData();
   }, []);
 
   return (
@@ -62,9 +108,9 @@ const AnalyticsPage = () => {
             <hr className="test line" />
             <div className="test single-content-section">
                 <div className="test upper-section">
-                  <h2 className='test graph-text'>Daily Flights</h2>
+                  <h2 className='test graph-text'>Monthly Flights</h2>
                   <ResponsiveContainer width="100%" height={200} className="chart">
-                      <LineChart data={data}>
+                      <LineChart data={monthlyAnalytics}>
                           <CartesianGrid strokeDasharray="3 3" />
                           <XAxis dataKey="name" />
                           <YAxis />
@@ -73,6 +119,34 @@ const AnalyticsPage = () => {
                           <Line type="monotone" dataKey="value" stroke="#8884d8" />
                       </LineChart>
                   </ResponsiveContainer>
+                </div>
+                {/* <div className="test lower-section">
+                  <div className="test left-section">
+                    <h2 className='test graph-text'>Daily Flights</h2>
+                    <ResponsiveContainer width="100%" height={200} className='chart'>
+                        <LineChart data={data}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                            <Tooltip /> 
+                            <Legend />
+                            <Line type="monotone" dataKey="value" stroke="#8884d8" />
+                        </LineChart>
+                    </ResponsiveContainer>
+                  </div>
+                  <div className="test right-section">
+                    <h2 className='test graph-text'>Weekly Flights</h2>
+                    <ResponsiveContainer width="100%" height={200} className='chart'>
+                        <LineChart data={data}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                            <Tooltip /> 
+                            <Legend />
+                            <Line type="monotone" dataKey="value" stroke="#8884d8" />
+                        </LineChart>
+                    </ResponsiveContainer>
+                  </div>
                 </div>
                 <div className="test lower-section">
                   <div className="test left-section">
@@ -101,7 +175,7 @@ const AnalyticsPage = () => {
                         </LineChart>
                     </ResponsiveContainer>
                   </div>
-                </div>
+                </div> */}
             </div>
         </div>
 
@@ -114,6 +188,19 @@ const AnalyticsPage = () => {
             <hr className="test line" />
             <div className="test single-content-section">
                 <div className="test upper-section">
+                  <h2 className='test graph-text'>Monthly Aircrafts</h2>
+                  <ResponsiveContainer width="100%" height={200} className="chart">
+                      <LineChart data={monthlyAircraftAnalytics}>
+                          <CartesianGrid strokeDasharray="3 3" />
+                          <XAxis dataKey="name" />
+                          <YAxis />
+                          <Tooltip /> 
+                          <Legend />
+                          <Line type="monotone" dataKey="value" stroke="#8884d8" />
+                      </LineChart>
+                  </ResponsiveContainer>
+                </div>
+                {/* <div className="test upper-section">
                   <h2 className='test graph-text'>Daily Aircrafts</h2>
                   <ResponsiveContainer width="100%" height={200} className="chart">
                       <LineChart data={data}>
@@ -125,8 +212,8 @@ const AnalyticsPage = () => {
                           <Line type="monotone" dataKey="value" stroke="#8884d8" />
                       </LineChart>
                   </ResponsiveContainer>
-                </div>
-                <div className="test lower-section">
+                </div> */}
+                {/* <div className="test lower-section">
                   <div className="test left-section">
                     <h2 className='test graph-text'>Monthly Aircrafts</h2>
                     <ResponsiveContainer width="100%" height={200} className='chart'>
@@ -153,7 +240,7 @@ const AnalyticsPage = () => {
                         </LineChart>
                     </ResponsiveContainer>
                   </div>
-                </div>
+                </div> */}
             </div>
         </div>
 
@@ -165,9 +252,36 @@ const AnalyticsPage = () => {
             <h5 className="test section-subheader">Visualize your Pilots Data</h5>
             <hr className="test line" />
             <div className="test single-content-section">
-                <div className="test upper-section">
-                  <h2 className='test graph-text'>Daily Pilots</h2>
-                  <ResponsiveContainer width="100%" height={200} className="chart">
+              <div className="test upper-section">
+                <h2 className='test graph-text'>Monthly Pilots</h2>
+                <ResponsiveContainer width="100%" height={200} className="chart">
+                    <LineChart data={monthlyPilotAnalytics}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        <Tooltip /> 
+                        <Legend />
+                        <Line type="monotone" dataKey="value" stroke="#8884d8" />
+                    </LineChart>
+                </ResponsiveContainer>
+              </div>
+              {/* <div className="test upper-section">
+                <h2 className='test graph-text'>Daily Pilots</h2>
+                <ResponsiveContainer width="100%" height={200} className="chart">
+                    <LineChart data={data}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        <Tooltip /> 
+                        <Legend />
+                        <Line type="monotone" dataKey="value" stroke="#8884d8" />
+                    </LineChart>
+                </ResponsiveContainer>
+              </div> */}
+              {/* <div className="test lower-section">
+                <div className="test left-section">
+                  <h2 className='test graph-text'>Monthly Pilots</h2>
+                  <ResponsiveContainer width="100%" height={200} className='chart'>
                       <LineChart data={data}>
                           <CartesianGrid strokeDasharray="3 3" />
                           <XAxis dataKey="name" />
@@ -178,34 +292,20 @@ const AnalyticsPage = () => {
                       </LineChart>
                   </ResponsiveContainer>
                 </div>
-                <div className="test lower-section">
-                  <div className="test left-section">
-                    <h2 className='test graph-text'>Monthly Pilots</h2>
-                    <ResponsiveContainer width="100%" height={200} className='chart'>
-                        <LineChart data={data}>
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="name" />
-                            <YAxis />
-                            <Tooltip /> 
-                            <Legend />
-                            <Line type="monotone" dataKey="value" stroke="#8884d8" />
-                        </LineChart>
-                    </ResponsiveContainer>
-                  </div>
-                  <div className="test right-section">
-                    <h2 className='test graph-text'>Yearly Pilots</h2>
-                    <ResponsiveContainer width="100%" height={200} className='chart'>
-                        <LineChart data={data}>
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="name" />
-                            <YAxis />
-                            <Tooltip /> 
-                            <Legend />
-                            <Line type="monotone" dataKey="value" stroke="#8884d8" />
-                        </LineChart>
-                    </ResponsiveContainer>
-                  </div>
+                <div className="test right-section">
+                  <h2 className='test graph-text'>Yearly Pilots</h2>
+                  <ResponsiveContainer width="100%" height={200} className='chart'>
+                      <LineChart data={data}>
+                          <CartesianGrid strokeDasharray="3 3" />
+                          <XAxis dataKey="name" />
+                          <YAxis />
+                          <Tooltip /> 
+                          <Legend />
+                          <Line type="monotone" dataKey="value" stroke="#8884d8" />
+                      </LineChart>
+                  </ResponsiveContainer>
                 </div>
+              </div> */}
             </div>
         </div>
 
