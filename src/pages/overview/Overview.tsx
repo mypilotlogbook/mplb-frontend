@@ -30,22 +30,20 @@ type ChartData = {
 
 const Overview = () => {
 
-    const data: ChartData = [
-        { name: 'Jan', value: 4 },
-        { name: 'Feb', value: 3 },
-        { name: 'Mar', value: 2 },
-        { name: 'Apr', value: 2 },
-        { name: 'May', value: 17 },
-        { name: 'Jun', value: 30 },
-        { name: 'Jul', value: 5 },
-        { name: 'Aug', value: 20 },
-        { name: 'Sep', value: 11 },
-        { name: 'Oct', value: 16 },
-        { name: 'Nov', value: 19 },
-        { name: 'Dec', value: 10 },
-    ];
-
-    const [monthlyAnalytics, setMonthlyAnalytics] = useState([]);
+    const [monthlyAnalytics, setMonthlyAnalytics] = useState([
+        { name: 'Jan', value: 0 },
+        { name: 'Feb', value: 0 },
+        { name: 'Mar', value: 0 },
+        { name: 'Apr', value: 0 },
+        { name: 'May', value: 0 },
+        { name: 'Jun', value: 0 },
+        { name: 'Jul', value: 0 },
+        { name: 'Aug', value: 0 },
+        { name: 'Sep', value: 0 },
+        { name: 'Oct', value: 0 },
+        { name: 'Nov', value: 0 },
+        { name: 'Dec', value: 0 },
+    ]);
 
     const [pilots, setPilots] = useState<PilotProps[]>([]);
     const [airfields, setAirfields] = useState<AirfieldProps[]>([]);
