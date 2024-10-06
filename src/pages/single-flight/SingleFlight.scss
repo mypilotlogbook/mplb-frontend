@@ -37,6 +37,120 @@
             display: none;
         }
 
+        .add-flight-content-header {
+            width: 100%;
+            margin-top: 30px;
+
+            .section-header {
+                color: $black;
+                font-family: $primary-font;
+                font-weight: 700;
+                text-decoration: underline;
+            }
+        }
+
+        .form-container {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+
+            .input {
+
+                .checkbox {
+                    accent-color: $placeholder-text-color;
+                }
+
+                .options {
+                    width: 100%;
+                    background-color: $placeholder-text-color;
+                    padding: 15px 20px;
+                    color: gray;
+                    border: none;
+                    outline: none;
+                    font-size: 12px;
+                    appearance: none;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    border-radius: 0.25rem;
+
+                    .option {
+                        width: 100%;
+                        color: gray;
+                        padding: 5px 10px;
+                    }
+                }
+
+                .add-btn {
+                    background-color: $black;
+                    color: $white;
+                    width: 100%;
+                    border-radius: 0.25rem;
+                    padding: 14px 30px;
+                    cursor: pointer;
+                    border: none;
+                    outline: none;
+                    font-family: $primary-font;
+                    font-size: 13px;
+                }
+            }
+        }
+
+        .line {
+            width: 100%;
+            opacity: 0.5;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgb(205, 205, 205);
+        }
+
+        .form-container-two {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+
+            .input {
+
+                .checkbox {
+                    accent-color: $placeholder-text-color;
+                }
+
+                .options {
+                    width: 100%;
+                    background-color: $placeholder-text-color;
+                    padding: 15px 20px;
+                    color: gray;
+                    border: none;
+                    outline: none;
+                    font-size: 12px;
+                    appearance: none;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    border-radius: 0.25rem;
+
+                    .option {
+                        width: 100%;
+                        color: gray;
+                        padding: 5px 10px;
+                    }
+                }
+
+                .add-btn {
+                    background-color: $black;
+                    color: $white;
+                    width: 100%;
+                    border-radius: 0.25rem;
+                    padding: 14px 30px;
+                    cursor: pointer;
+                    border: none;
+                    outline: none;
+                    font-family: $primary-font;
+                    font-size: 13px;
+                }
+            }
+        }
+
         .section1 {
             width: 100%;
             display: flex;
@@ -44,25 +158,25 @@
             align-items: center;
             border-bottom: 1px solid $text-field-color;
             padding-bottom: 10px;
-    
+
             .section1-left {
-    
+
                 .lable {
                     color: $black;
                     font-family: $primary-font;
                     font-weight: 700;
                     font-size: 20px;
                 }
-    
+
                 .sub-lable {
                     color: $textfield-text-color;
                     font-family: $primary-font;
                     font-weight: normal;
                 }
             }
-    
+
             .section1-right {
-    
+
                 .save-button {
                     background-color: $black;
                     color: $white;
