@@ -88,6 +88,41 @@ const SingleFlight = () => {
         throw new Error('Id context is not available');
     }
 
+    const handleDelete = () => {
+        /* eslint-disable no-restricted-globals */
+        const isConfirmed = confirm('Are you sure want to delete this aircraft record?');
+        if(isConfirmed) {
+            
+        }
+    }
+
+    const handleUpdate = () => {
+        
+    }
+
+    const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    ) => {
+        const { name, value, type } = e.target;
+
+        setFormData((prevData) => {
+            if (!prevData) return prevData; 
+
+            const isObjectWithId = (field: any): field is { _id: string } => {
+            return field && typeof field === "object" && "_id" in field;
+            };
+
+            return {
+            ...prevData,
+            [name]: type === "checkbox" && e.target instanceof HTMLInputElement
+                ? e.target.checked
+                : isObjectWithId(prevData[name as keyof UpdateFlightProps])
+                ? { _id: value } 
+                : value, 
+            };
+        });
+    };
+
     const getSingleFlightDetails = () => {
         getSingleFlight({
             flightId: flightId || null,
@@ -109,6 +144,11 @@ const SingleFlight = () => {
             setPilots: setPilots,
         });
     }
+
+    const formatDateForInput = (dateString: string) => {
+        const date = new Date(dateString);
+        return date.toISOString().split("T")[0]; 
+    };
 
     useEffect(() => {
         getData();
@@ -151,18 +191,23 @@ const SingleFlight = () => {
                     </div>
                     <div className="test section1-right">
                         <Tooltip title="Click here to save your changes" arrow>
-                            <button className="test save-button" onClick={() => { }}>Save Changes</button>
+                            <button className="test save-button" onClick={handleUpdate}>Save Changes</button>
                         </Tooltip>
                         <Tooltip title="Delete Flight" arrow>
-                            <button className="test delete-button" onClick={() => { }}>Delete Flight</button>
+                            <button className="test delete-button" onClick={handleDelete}>Delete Flight</button>
                         </Tooltip>
                     </div>
                 </div>
+
+                <Section marginTop='20px'>
+                    <Lable title="* are required fields. You must fill in all the required fields" />
+                </Section>
 
                 {/* flight basic details */}
                 <div className="test add-flight-content-header">
                     <h3 className="test section-header">Flight Basic Details</h3>
                 </div>
+
                 <div className="test form-container">
                     <div className="test input">
                         <Lable
@@ -171,9 +216,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='date'
                             name='date'
-                            value={''}
+                            value={formData?.date ? formatDateForInput(formData.date) : ""}
                             placeholder='Enter the date of flight'
-                            onChange={() => { }}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -184,7 +229,12 @@ const SingleFlight = () => {
                             id="options"
                             className="options test"
                             name="aircraft"
-                            onChange={() => { }}
+                            value={
+                                typeof formData?.aircraft === 'object' 
+                                ? formData.aircraft._id 
+                                : formData?.aircraft || ''
+                            }
+                            onChange={handleChange}
                         >
                             <option>Select Aircraft</option>
                             {
@@ -203,9 +253,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='flight_nr'
-                            value={''}
+                            value={formData?.flight_nr || ""}
                             placeholder='Enter the flight nr'
-                            onChange={() => { }}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -216,7 +266,12 @@ const SingleFlight = () => {
                             id="options"
                             className="options test"
                             name="arrival"
-                            onChange={() => { }}
+                            value={
+                                typeof formData?.arrival === 'object' 
+                                ? formData.arrival._id 
+                                : formData?.arrival || ''
+                            }
+                            onChange={handleChange}
                         >
                             <option>Select Arrival</option>
                             {
@@ -235,8 +290,13 @@ const SingleFlight = () => {
                         <select
                             id="options"
                             className="options test"
+                            value={
+                                typeof formData?.departure === 'object' 
+                                ? formData.departure._id 
+                                : formData?.departure || ''
+                            }
                             name="departure"
-                            onChange={() => { }}
+                            onChange={handleChange}
                         >
                             <option>Select Departure</option>
                             {
@@ -255,9 +315,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='std'
-                            value={''}
+                            value={formData?.std || ""}
                             placeholder='Enter the STD'
-                            onChange={() => { }}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -267,9 +327,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='out_time'
-                            value={''}
+                            value={formData?.out_time || ""}
                             placeholder='Enter the Out Time'
-                            onChange={() => { }}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -279,9 +339,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='takeoff'
-                            value={''}
+                            value={formData?.takeoff || ""}
                             placeholder='Enter the Takeoff'
-                            onChange={() => { }}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -291,9 +351,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='landing'
-                            value={''}
+                            value={formData?.landing || ""}
                             placeholder='Enter the Landing'
-                            onChange={() => { }}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -303,9 +363,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='in_time'
-                            value={''}
+                            value={formData?.in_time || ""}
                             placeholder='Enter the In Time'
-                            onChange={() => { }}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -315,9 +375,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='sta'
-                            value={''}
+                            value={formData?.sta || ""}
                             placeholder='Enter the STA'
-                            onChange={() => { }}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -327,9 +387,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='total_time'
-                            value={''}
+                            value={formData?.total_time || ""}
                             placeholder='Enter the total time'
-                            onChange={() => { }}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -339,9 +399,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='air'
-                            value={''}
+                            value={formData?.air || ""}
                             placeholder='Enter the Air'
-                            onChange={() => { }}
+                            onChange={handleChange}
                         />
                     </div>
                 </div>
@@ -356,9 +416,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='crew_list'
-                            value={''}
+                            value={formData?.crew_list || ""}
                             placeholder='Enter Crew List'
-                            onChange={() => { }}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -368,9 +428,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='flight_log'
-                            value={''}
+                            value={formData?.flight_log || ""}
                             placeholder='Enter Flight Log'
-                            onChange={() => { }}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -380,9 +440,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='training'
-                            value={''}
+                            value={formData?.training || ""}
                             placeholder='Enter Training'
-                            onChange={() => { }}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -392,9 +452,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='remarks'
-                            value={''}
+                            value={formData?.remarks || ""}
                             placeholder='Enter Remarks'
-                            onChange={() => { }}
+                            onChange={handleChange}
                         />
                     </div>
                 </div>
@@ -413,9 +473,9 @@ const SingleFlight = () => {
                         <select
                             id="options"
                             className="options test"
-                            value={''}
+                            value={formData?.delay_code_one || ""}
                             name="delay_code_one"
-                            onChange={() => { }}
+                            onChange={handleChange}
                         >
                             <option>Select Delay Code One</option>
                             {
@@ -434,9 +494,9 @@ const SingleFlight = () => {
                         <select
                             id="options"
                             className="options test"
-                            value={''}
+                            value={formData?.delay_code_two || ""}
                             name="delay_code_two"
-                            onChange={() => { }}
+                            onChange={handleChange}
                         >
                             <option>Select Delay Code Two</option>
                             {
@@ -455,9 +515,9 @@ const SingleFlight = () => {
                         <select
                             id="options"
                             className="options test"
-                            value={''}
+                            value={formData?.delay_code_three || ""}
                             name="delay_code_three"
-                            onChange={() => { }}
+                            onChange={handleChange}
                         >
                             <option>Select Delay Code Three</option>
                             {
@@ -485,9 +545,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='pic'
-                            value={''}
+                            value={formData?.pic || ""}
                             placeholder='Enter PIC'
-                            onChange={() => { }}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -497,9 +557,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='pic_us'
-                            value={''}
+                            value={formData?.pic_us || ""}
                             placeholder='Enter PICus'
-                            onChange={() => { }}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -509,10 +569,11 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='sic'
-                            value={''}
+                            value={formData?.sic || ""}
                             placeholder='Enter SIC'
-                            onChange={() => { }}
+                            onChange={handleChange}
                         />
+                        {formData?.sic}
                     </div>
                     <div className="test input">
                         <Lable
@@ -521,9 +582,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='dual'
-                            value={''}
+                            value={formData?.dual || ""}
                             placeholder='Enter Dual'
-                            onChange={() => { }}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -533,9 +594,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='instructor'
-                            value={''}
+                            value={formData?.instructor || ""}
                             placeholder='Enter Instructor'
-                            onChange={() => { }}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -545,9 +606,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='examinar'
-                            value={''}
+                            value={formData?.examinar || ""}
                             placeholder='Enter Examinar'
-                            onChange={() => { }}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -557,9 +618,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='relief'
-                            value={''}
+                            value={formData?.relief || ""}
                             placeholder='Enter Relief'
-                            onChange={() => { }}
+                            onChange={handleChange}
                         />
                     </div>
                 </div>
@@ -574,9 +635,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='night'
-                            value={''}
+                            value={formData?.night || ""}
                             placeholder='Enter Night'
-                            onChange={() => {}}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -586,9 +647,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='ifr'
-                            value={''}
+                            value={formData?.ifr || ""}
                             placeholder='Enter IFR'
-                            onChange={() => {}}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -598,9 +659,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='act_instr'
-                            value={''}
+                            value={formData?.act_instr || ""}
                             placeholder='Enter Act.Instr'
-                            onChange={() => {}}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -610,9 +671,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='sim_instr'
-                            value={''}
+                            value={formData?.sim_instr || ""}
                             placeholder='Enter Sim.Instr'
-                            onChange={() => {}}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -622,9 +683,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='xc'
-                            value={''}
+                            value={formData?.xc || ""}
                             placeholder='Select XC'
-                            onChange={() => {}}
+                            onChange={handleChange}
                         />
                     </div>
                 </div>
@@ -639,9 +700,9 @@ const SingleFlight = () => {
                         <select
                             id="options"
                             className="options test"
-                            value={''}
+                            value={formData?.task || ""}
                             name="task"
-                            onChange={() => {}}
+                            onChange={handleChange}
                         >
                             <option value=''>Select Task</option>
                             <option value='PM'>PM</option>
@@ -655,9 +716,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='TO_day'
-                            value={''}
+                            value={formData?.TO_day || ""}
                             placeholder='Enter T/O Day'
-                            onChange={() => {}}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -667,9 +728,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='TO_night'
-                            value={''}
+                            value={formData?.TO_night || ""}
                             placeholder='Enter T/O Night'
-                            onChange={() => {}}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -679,9 +740,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='LDG_day'
-                            value={''}
+                            value={formData?.LDG_day || ""}
                             placeholder='Enter LDG Day'
-                            onChange={() => {}}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -691,9 +752,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='LDG_night'
-                            value={''}
+                            value={formData?.LDG_night || ""}
                             placeholder='Enter LDG Night'
-                            onChange={() => {}}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -703,9 +764,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='lifts'
-                            value={''}
+                            value={formData?.lifts || ""}
                             placeholder='Enter Lifts'
-                            onChange={() => {}}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -715,9 +776,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='holding'
-                            value={''}
+                            value={formData?.holding || ""}
                             placeholder='Enter Holding'
-                            onChange={() => {}}
+                            onChange={handleChange}
                         />
                     </div>
                 </div>
@@ -736,9 +797,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='pax'
-                            value={''}
+                            value={formData?.pax || ""}
                             placeholder='Enter Pax Amount'
-                            onChange={() => {}}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -748,9 +809,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='fuel_total'
-                            value={''}
+                            value={formData?.fuel_total || ""}
                             placeholder='Enter Fuel Total'
-                            onChange={() => {}}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -760,9 +821,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='fuel_plan'
-                            value={''}
+                            value={formData?.fuel_plan || ""}
                             placeholder='Enter Fuel Plan'
-                            onChange={() => {}}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -772,9 +833,9 @@ const SingleFlight = () => {
                         <DashboardTextfield
                             type='text'
                             name='fuel_used'
-                            value={''}
+                            value={formData?.fuel_used || ""}
                             placeholder='Enter Fuel Used'
-                            onChange={() => {}}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="test input">
@@ -785,8 +846,8 @@ const SingleFlight = () => {
                             type="checkbox"
                             className="test checkbox"
                             name="de_icing"
-                            checked={false}
-                            onChange={() => {}}
+                            checked={formData?.de_icing}
+                            onChange={handleChange}
                         />
                     </div>
                 </div>
