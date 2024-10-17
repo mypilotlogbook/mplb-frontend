@@ -245,10 +245,10 @@ export interface FlightProps{
 export interface UpdateFlightProps{
     // Flight time and location
     date?: string;
-    aircraft?: string;
+    aircraft?: { _id: string } | string;
     flight_nr?: string;
-    departure: string;
-    arrival: string;
+    departure: { _id: string } | string;
+    arrival: { _id: string } | string;
     std?: string;
     out_time?: string;
     takeoff?: string;
@@ -258,10 +258,10 @@ export interface UpdateFlightProps{
     total_time?: string;
     air?: string;
     // Flight crew details
-    pilotOne?: string;
-    pilotTwo?: string;
-    pilotThree?: string;
-    pilotFour?: string;
+    pilotOne?: { _id: string } | string;
+    pilotTwo?: { _id: string } | string;
+    pilotThree?: { _id: string } | string;
+    pilotFour?: { _id: string } | string;
     crew_list?: string;
     flight_log?: string;
     remarks?: string;

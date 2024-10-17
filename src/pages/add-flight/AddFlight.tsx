@@ -256,6 +256,10 @@ const AddFlight = () => {
       <div className="test add-flight-content">
         <h1 className="test header">Add New Flight</h1>
         <h5 className="test subheader">Fill the details for add a new flight</h5>
+
+        <Section marginTop='20px'>
+          <Lable title="* are required fields. You must fill in all the required fields" />
+        </Section>
         
         {/* flight basic details */}
         <div className="test add-flight-content-header">
@@ -1023,10 +1027,6 @@ const AddFlight = () => {
             />
           </div>
         </div>
-
-        <Section marginTop='20px'>
-          <Lable title="* are required fields. You must fill in all the required fields" />
-        </Section>
 
         <div className="test form-container">
           <div className="test input">
