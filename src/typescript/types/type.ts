@@ -186,6 +186,15 @@ export type DeletePilotProps = {
     navigate: NavigateFunction,
 }
 
+export type DeleteFlightProps = {
+    flightId: string | null,
+    setError: Dispatch<SetStateAction<boolean>>,
+    setSuccess: Dispatch<SetStateAction<boolean>>,
+    setStatusCode: Dispatch<SetStateAction<number>>,
+    setMessage: Dispatch<SetStateAction<string>>,
+    navigate: NavigateFunction,
+}
+
 export type UpdatePilotProps = {
     pilotId: string | null,
     setError?: Dispatch<SetStateAction<boolean>>,

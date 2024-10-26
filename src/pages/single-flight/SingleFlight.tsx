@@ -13,6 +13,7 @@ import getAircraftsByUserId from '../../api/aircraft-endpoints/getAircraftsByUse
 import getAirFields from '../../api/airfield-endpoints/fetchAirfields';
 import getPilotsByUserId from '../../api/pilot-endpoints/getPilotsByUserId';
 import Section from '../../components/section/Section';
+import deleteFlight from '../../api/flight-endpoints/deleteFlight';
 
 const SingleFlight = () => {
 
@@ -92,7 +93,14 @@ const SingleFlight = () => {
         /* eslint-disable no-restricted-globals */
         const isConfirmed = confirm('Are you sure want to delete this aircraft record?');
         if(isConfirmed) {
-            
+            deleteFlight({
+            flightId: flightId || null,
+            setStatusCode: setStatusCode,
+            setSuccess: setSuccess,
+            setError: setError,
+            setMessage: setMessage,
+            navigate: navigate,
+        });
         }
     }
 
