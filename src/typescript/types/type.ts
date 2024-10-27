@@ -276,6 +276,18 @@ export type UpdateAircraftProps = {
     getAircraft: (props: GetAircraftProps) => void,
 }
 
+export type UpdateSingleFlightProps = {
+    flightId: string | null,
+    formData: UpdateFlightProps | undefined,
+    setError?: Dispatch<SetStateAction<boolean>>,
+    setSuccess?: Dispatch<SetStateAction<boolean>>,
+    setStatusCode?: Dispatch<SetStateAction<number>>,
+    setMessage?: Dispatch<SetStateAction<string>>,
+    setFlight?: Dispatch<SetStateAction<FlightProps | undefined>>,
+    setFormData?: Dispatch<SetStateAction<UpdateFlightProps | undefined>>,
+    getSingleFlight: (props: GetSingleFlightProps) => void,
+}
+
 export type GetAircraftProps = {
     aircraftId: string | null,
     setAircraft?: Dispatch<SetStateAction<AircraftProps | undefined>>,

@@ -14,6 +14,7 @@ import getAirFields from '../../api/airfield-endpoints/fetchAirfields';
 import getPilotsByUserId from '../../api/pilot-endpoints/getPilotsByUserId';
 import Section from '../../components/section/Section';
 import deleteFlight from '../../api/flight-endpoints/deleteFlight';
+import updateFlight from '../../api/flight-endpoints/updateFlight';
 
 const SingleFlight = () => {
 
@@ -105,7 +106,17 @@ const SingleFlight = () => {
     }
 
     const handleUpdate = () => {
-        
+        updateFlight({
+            flightId: flightId || null,
+            setStatusCode: setStatusCode,
+            setSuccess: setSuccess,
+            setError: setError,
+            setMessage: setMessage,
+            getSingleFlight: getSingleFlight,
+            setFlight: setFlight,
+            setFormData: setFormData,
+            formData: formData
+        });
     }
 
     const handleChange = (
@@ -581,7 +592,6 @@ const SingleFlight = () => {
                             placeholder='Enter SIC'
                             onChange={handleChange}
                         />
-                        {formData?.sic}
                     </div>
                     <div className="test input">
                         <Lable
